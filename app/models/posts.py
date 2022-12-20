@@ -18,3 +18,15 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime(), onupdate=func.now())
 
     owner = relationship("User", back_populates="posts")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'owner_id': self.owner_id,
+            'type': self.type,
+            'title': self.title,
+            'content': self.content,
+            'quote_source': self.quote_source,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
