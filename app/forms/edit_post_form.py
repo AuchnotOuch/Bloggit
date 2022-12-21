@@ -10,8 +10,8 @@ class EditPostForm(FlaskForm):
     link_url = StringField('link_url')
 
     def validate_title(self, title):
-        if title.data and len(title.data) > 50:
-            raise ValidationError('Title must be 50 or less characters')
+        if title.data and len(title.data) > 500:
+            raise ValidationError('Title must be 500 or less characters')
 
     def validate_content(self, content):
         if content.data and len(content.data) > 10000:

@@ -58,28 +58,33 @@ def update_post(id):
     post = Post.query.get(id)
 
     form['csrf_token'].data = request.cookies['csrf_token']
+    if post is not None:
+        if form.validate_on_submit():
+            if form.data['title']:
+                post.title = form.data['title']
+            if form.data['content']:
+                post.content = form.data['content']
+            if form.data['quote_source']:
+                post.quote_source = form.data['quote_source']
+            if form.data['link_url']:
+                post.link_url = form.data['link_url']
 
-    if form.validate_on_submit():
-        if form.data['title']:
-            post.title = form.data['title']
-        if form.data['content']:
-            post.content = form.data['content']
-        if form.data['quote_source']:
-            post.quote_source = form.data['quote_source']
-        if form.data['link_url']:
-            post.link_url = form.data['link_url']
+            db.session.commit()
+            return post.to_dict()
 
-        db.session.commit()
-        return post.to_dict()
-
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-
-
-
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {"Error": f'Post {id} not found'}
 
 
 @posts_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
-def delete_post():
-    pass
+def delete_post(id):
+
+    post = Post.query.get(id)
+
+    if post is not None:
+        db.session.delete(post)
+        db.session.commit()
+        return {'Message': f'Post {id} successfully deleted'}
+
+    return {"Error": f'Post {id} not found'}

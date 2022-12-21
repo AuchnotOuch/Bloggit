@@ -11,8 +11,8 @@ class NewPostForm(FlaskForm):
     link_url = StringField('link_url')
 
     def validate_title(self, title):
-        if title.data and len(title.data) > 50:
-            raise ValidationError('Title must be 50 or less characters')
+        if title.data and len(title.data) > 500:
+            raise ValidationError('Title must be 500 or less characters')
 
     def validate_content(self, content):
         if content.data and len(content.data) > 10000:
@@ -25,7 +25,3 @@ class NewPostForm(FlaskForm):
     def validate_link_url(self, link_url):
         if link_url.data and len(link_url.data) > 300:
             raise ValidationError('Link must be 300 or less characters')
-
-    def validate_title_content(self, type, title, content):
-        if type.data == 'text' and title.data and content.data == False:
-            raise ValidationError('You must provide either a title or some content')
