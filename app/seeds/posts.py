@@ -16,8 +16,7 @@ def seed_posts():
     )
     post_three = Post(
         owner_id = 3,
-        type = "link",
-        link_url = "https://www.reddit.com/r/dankmemes/",
+        type = "photo",
         content = "Some of the dankest memes around"
     )
 
