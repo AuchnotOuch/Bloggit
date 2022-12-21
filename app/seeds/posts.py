@@ -17,7 +17,7 @@ def seed_posts():
     post_three = Post(
         owner_id = 3,
         type = "photo",
-        content = "Some of the dankest memes around"
+        content = "Some dank memes"
     )
 
     db.session.add(post_one)
