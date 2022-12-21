@@ -30,6 +30,7 @@ class Post(db.Model):
             'title': self.title,
             'content': self.content,
             'quote_source': self.quote_source,
+            'link_url': self.link_url,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
