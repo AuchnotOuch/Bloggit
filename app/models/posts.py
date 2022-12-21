@@ -21,6 +21,7 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime(), onupdate=func.now())
 
     owner = relationship("User", back_populates="posts")
+    photos = relationship("PostImage", back_populates="post")
 
     def to_dict(self):
         return {
@@ -33,5 +34,6 @@ class Post(db.Model):
             'link_url': self.link_url,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'owner': self.owner.to_dict()
+            'owner': self.owner.to_dict(),
+            'photos': [photo.to_dict() for photo in self.photos]
         }
