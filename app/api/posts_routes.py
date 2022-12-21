@@ -33,7 +33,6 @@ def add_post():
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-
         new_post = Post(
             owner_id = user.id,
             type = form.data['type'],
@@ -42,8 +41,21 @@ def add_post():
             quote_source = form.data['quote_source'],
             link_url = form.data['link_url']
         )
-
         db.session.add(new_post)
         db.session.commit()
         return new_post.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@posts_routes.route('<int:id>', methods=['PUT'])
+@login_required
+def update_post():
+    """
+    Updates a post with updated form data
+    """
+
+
+
+@posts_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_post():
+    pass
