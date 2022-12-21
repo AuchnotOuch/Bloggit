@@ -37,10 +37,19 @@ const Landing = () => {
                                             <div className='quote-source'>- {post.quote_source}</div>
                                         </>
                                     }
-                                    {/* to do: add photo type to post content and research ways to add link previews */}
-                                    {/* {post.type === 'photo' &&
-
-                                    } */}
+                                    {/* to do: research ways to add link previews */}
+                                    {post.type === 'photo' &&
+                                        <>
+                                            {Object.values(post.photos).map(photo => (
+                                                <div className='image-post-container'>
+                                                    <div className='post-image'>
+                                                        <img src={photo.url}></img>
+                                                    </div>
+                                                    <div className='post-image-caption'>{photo.text}</div>
+                                                </div>
+                                            ))}
+                                        </>
+                                    }
                                 </div>
                             </div>
                         </div>

@@ -16,7 +16,8 @@
 .feed-profile-photo {
     height: 64px;
     width: 64px;
-    border: 1px solid grey
+    border: 1px solid grey;
+    /* margin-right: 64px; */
 }
 
 .feed-profile-photo>img {
@@ -26,6 +27,16 @@
 
 .post-header {
     width: 540px;
+}
+
+.post-image {
+    width: 540;
+}
+
+.post-image img {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .side-section {
