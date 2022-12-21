@@ -32,5 +32,6 @@ class Post(db.Model):
             'quote_source': self.quote_source,
             'link_url': self.link_url,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'owner': self.owner.to_dict()
         }

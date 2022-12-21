@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
+    width: 624px;
+}
+
+.feed-profile-photo {
+    height: 64px;
+    width: 64px;
+    border: 1px solid grey
+}
+
+.feed-profile-photo>img {
+    height: 64px;
+    width: 64px;
+}
+
+.post-header {
+    width: 540px;
+}
+
+.side-section {
+    border: 1px solid gray;
+}
