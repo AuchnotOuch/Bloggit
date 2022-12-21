@@ -11,21 +11,21 @@ class NewPostForm(FlaskForm):
     link_url = StringField('link_url')
 
     def validate_title(self, title):
-        if len(title.data) > 50:
+        if title.data and len(title.data) > 50:
             raise ValidationError('Title must be 50 or less characters')
 
     def validate_content(self, content):
-        if len(content.data) > 10000:
+        if content.data and len(content.data) > 10000:
             raise ValidationError('Post text must be 10000 or less characters')
 
     def validate_quote_source(self, quote_source):
-        if len(quote_source.data) > 100:
+        if quote_source.data and len(quote_source.data) > 100:
             raise ValidationError('Quote source must be 100 or less characters')
 
     def validate_link_url(self, link_url):
-        if len(link_url.data) > 300:
+        if link_url.data and len(link_url.data) > 300:
             raise ValidationError('Link must be 300 or less characters')
 
     def validate_title_content(self, type, title, content):
-        if type.data == 'text' and not title.data and not content.data:
+        if type.data == 'text' and title.data and content.data == False:
             raise ValidationError('You must provide either a title or some content')
