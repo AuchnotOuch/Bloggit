@@ -14,3 +14,10 @@ def all_posts():
     posts = Post.query.all()
 
     return {'posts': [post.to_dict() for post in posts]}
+
+@posts_routes.route('/new', methods=['POST'])
+@login_required
+def add_post():
+    """
+    Creates a new post based on submitted form data
+    """
