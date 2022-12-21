@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, Post, User
-from app.forms import NewPostForm
+from app.forms import NewPostForm, EditPostForm
 
 posts_routes = Blueprint('posts', __name__)
 
@@ -48,10 +48,34 @@ def add_post():
 
 @posts_routes.route('<int:id>', methods=['PUT'])
 @login_required
-def update_post():
+def update_post(id):
     """
     Updates a post with updated form data
     """
+
+    form = EditPostForm()
+    user = current_user
+    post = Post.query.get(id)
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        if form.data['title']:
+            post.title = form.data['title']
+        if form.data['content']:
+            post.content = form.data['content']
+        if form.data['quote_source']:
+            post.quote_source = form.data['quote_source']
+        if form.data['link_url']:
+            post.link_url = form.data['link_url']
+
+        db.session.commit()
+        return post.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+
 
 
 
