@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
+    width: 624px;
+}
+
+.feed-profile-photo {
+    height: 64px;
+    width: 64px;
+    border: 1px solid grey;
+    /* margin-right: 64px; */
+}
+
+.feed-profile-photo>img {
+    height: 64px;
+    width: 64px;
+}
+
+.post-header {
+    width: 540px;
+}
+
+.post-image {
+    width: 540;
+}
+
+.post-image img {
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.side-section {
+    border: 1px solid gray;
+}
