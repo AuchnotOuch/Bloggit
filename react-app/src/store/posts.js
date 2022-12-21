@@ -10,3 +10,24 @@ const actionGetAllPosts = (posts) => {
         payload: posts
     }
 }
+
+const actionCreatePost = (post) => {
+    return {
+        type: CREATE_POST,
+        payload: post
+    }
+}
+
+const actionUpdatePost = (post) => {
+    return {
+        type: UPDATE_POST,
+        payload: post
+    }
+}
+
+const actionDeletePost = (postId) => {
+    return {
+        type: DELETE_POST,
+        payload: postId
+    }
+}
