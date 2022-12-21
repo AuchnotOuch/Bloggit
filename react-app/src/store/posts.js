@@ -31,3 +31,27 @@ const actionDeletePost = (postId) => {
         payload: postId
     }
 }
+
+export const thunkGetAllPosts = () => async (dispatch) => {
+    const response = await fetch("/api/posts", {
+        method: 'GET'
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(actionGetAllPosts(data))
+        return response
+    }
+}
+
+export default function postsReducer(state = {}, action) {
+    let newState;
+    switch (action.type) {
+        case GET_ALL_POSTS:
+            const postsObj = { ...state }
+            action.payload.Posts.forEach(post => postsObj[post.id] = post)
+            newState = Object.assign({ ...state }, { ...postsObj })
+            return newState
+        default:
+            return state
+    }
+}

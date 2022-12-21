@@ -20,7 +20,7 @@ def all_posts():
     """
     posts = Post.query.all()
 
-    return {'posts': [post.to_dict() for post in posts]}
+    return {'Posts': [post.to_dict() for post in posts]}
 
 @posts_routes.route('/new', methods=['POST'])
 @login_required
