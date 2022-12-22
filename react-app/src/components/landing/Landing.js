@@ -55,7 +55,7 @@ const Landing = () => {
                         </div>
                     ))}
                 </div>
-                <div className='side-section'>Test</div>
+                <div className='side-section'>Side Section</div>
             </div>
         </>
     )

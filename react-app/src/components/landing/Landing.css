@@ -1,6 +1,11 @@
 .container {
     display: flex;
     flex-direction: row;
+}
+
+.feed-container {
+    display: flex;
+    flex-direction: row;
     height: 100%;
     width: 100%;
     justify-content: center;
@@ -11,7 +16,10 @@
     flex-direction: row;
     border: 1px solid grey;
     width: 624px;
+    margin-bottom: 10px;
 }
+
+.post-content {}
 
 .feed-profile-photo {
     height: 64px;
@@ -37,6 +45,22 @@
     width: 100%;
     object-fit: cover;
     overflow: hidden;
+}
+
+.new-post-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 540px;
+    height: 100px;
+    margin-bottom: 20px;
+    border: 1px solid gray;
+}
+
+.new-post-option-button {
+    width: 100px;
+    height: 100px;
+    border: 1px solid grey;
 }
 
 .side-section {
