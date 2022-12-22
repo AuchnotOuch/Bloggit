@@ -1,13 +1,16 @@
 """updated users table
 
 Revision ID: cad54afaba11
-Revises: 
+Revises:
 Create Date: 2022-12-20 15:10:22.873968
 
 """
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = 'cad54afaba11'
@@ -30,6 +33,9 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
