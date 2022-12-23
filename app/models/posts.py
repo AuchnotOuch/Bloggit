@@ -21,7 +21,7 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime(), onupdate=func.now())
 
     owner = relationship("User", back_populates="posts")
-    photos = relationship("PostImage", back_populates="post")
+    photos = relationship("PostImage", back_populates="post", cascade="all, delete")
 
     def to_dict(self):
         return {

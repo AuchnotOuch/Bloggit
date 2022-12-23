@@ -69,6 +69,15 @@ export const thunkCreatePost = (post) => async (dispatch) => {
     }
 }
 
+export const thunkDeletePost = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}`, {
+        method: 'DELETE'
+    })
+    if (response.ok) {
+        dispatch(actionDeletePost(postId))
+    }
+}
+
 export default function postsReducer(state = {}, action) {
     let newState;
     switch (action.type) {
@@ -80,6 +89,10 @@ export default function postsReducer(state = {}, action) {
         case CREATE_POST:
             newState = { ...state }
             newState[action.payload.id] = action.payload
+            return newState
+        case DELETE_POST:
+            newState = { ...state }
+            delete newState[action.payload]
             return newState
         default:
             return state
