@@ -1,12 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { thunkGetAllPosts } from '../../store/posts';
 import NewPostBar from "../newPostBar/NewPostBar";
+import DeletePost from "../posts/Delete";
 import '../landing/Landing.css'
 
 const Dashboard = () => {
     const posts = useSelector(state => state.posts)
+    const user = useSelector(state => state.session.user)
+    const [mountDelete, setMountDelete] = useState(false)
+    const [mountEdit, setMountEdit] = useState(false)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -52,6 +57,13 @@ const Dashboard = () => {
                                                 <div>{post.content}</div>
                                             </>
                                         }
+                                        {post.owner.id === user.id &&
+                                            <>
+                                                <button>Edit</button>
+                                                <button onClick={() => setMountDelete(!mountDelete)}>Delete</button>
+                                            </>
+                                        }
+                                        {mountDelete && <DeletePost post={post} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
                                     </div>
                                 </div>
                             </div>
