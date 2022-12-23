@@ -9,6 +9,8 @@ class NewPostForm(FlaskForm):
     content = StringField('content')
     quote_source = StringField('quote_source')
     link_url = StringField('link_url')
+    image_url = StringField('image_url')
+    image_caption = StringField('image_caption')
 
     def validate_title(self, title):
         if title.data and len(title.data) > 500:

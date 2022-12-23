@@ -43,6 +43,32 @@ export const thunkGetAllPosts = () => async (dispatch) => {
     }
 }
 
+export const thunkCreatePost = (post) => async (dispatch) => {
+    const { owner_id, type, title, content, quote_source, link_url, image_url, image_caption } = post
+    console.log(post)
+    const response = await fetch("/api/posts/new", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            owner_id,
+            type,
+            title,
+            content,
+            quote_source,
+            link_url,
+            image_url,
+            image_caption
+        })
+    })
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(actionCreatePost(data))
+        return response
+    }
+}
+
 export default function postsReducer(state = {}, action) {
     let newState;
     switch (action.type) {
@@ -50,6 +76,10 @@ export default function postsReducer(state = {}, action) {
             const postsObj = { ...state }
             action.payload.Posts.forEach(post => postsObj[post.id] = post)
             newState = Object.assign({ ...state }, { ...postsObj })
+            return newState
+        case CREATE_POST:
+            newState = { ...state }
+            newState[action.payload.id] = action.payload
             return newState
         default:
             return state
