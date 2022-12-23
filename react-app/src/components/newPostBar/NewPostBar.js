@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import NewTextPost from './NewTextPost';
 import NewQuotePost from './NewQuotePost'
+import NewPhotoPost from './NewPhotoPost'
 
 const NewPostBar = () => {
     const user = useSelector(state => state.session.user)
@@ -37,7 +38,7 @@ const NewPostBar = () => {
             }
             {mountPhoto &&
                 <>
-                    <NewTextPost mountText={mountText} setMountText={setMountText} />
+                    <NewPhotoPost mountPhoto={mountPhoto} setMountPhoto={setMountPhoto} />
                 </>
             }
             <div className='container'>
@@ -52,7 +53,7 @@ const NewPostBar = () => {
                         <input onClick={() => mountQuoteModal()} type='image' src='https://www.svgrepo.com/show/340879/quotes.svg'></input>
                     </div>
                     <div className='new-post-option-button'>
-                        <input type='image' src='https://www.svgrepo.com/show/158771/photo.svg'></input>
+                        <input onClick={() => mountPhotoModal()} type='image' src='https://www.svgrepo.com/show/158771/photo.svg'></input>
                     </div>
                 </div>
             </div>

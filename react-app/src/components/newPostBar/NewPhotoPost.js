@@ -5,39 +5,39 @@ import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
 import "../landing/Landing.css"
 
 
-const NewTextPost = ({ mountText, setMountText }) => {
+const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
-    const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [errors, setErrors] = useState([])
 
+    const [imageUrl, setImageUrl] = useState('')
+    const [caption, setCaption] = useState('')
+
     useEffect(() => {
         const errors = []
-        if (!title && !content) {
-            errors.push("Please provide either a title or some content for your post, or both")
-        }
-        if (title.length > 500) {
-            errors.push("Title must be 500 or less characters")
-        }
-        if (content.length > 10000) {
-            errors.push("Post content must be 10000 or less characters")
+        if (!imageUrl) {
+            errors.push("You must provide an image url")
         }
         setErrors(errors)
-    }, [title, content])
+    }, [imageUrl])
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const newTextPost = {
+        const newPhotoPost = {
             owner_id: user.id,
-            type: "text",
-            title,
+            type: "photo",
+            image_url: imageUrl,
+            image_caption: caption,
             content
         }
 
-        setMountText(!mountText)
-        dispatch(thunkCreatePost(newTextPost))
+        console.log(newPhotoPost)
+
+        setMountPhoto(!mountPhoto)
+        dispatch(thunkCreatePost(newPhotoPost))
         dispatch(thunkGetAllPosts())
     }
     return (
@@ -51,15 +51,22 @@ const NewTextPost = ({ mountText, setMountText }) => {
                     <form className="text-form">
                         <input
                             type="text"
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
-                            placeholder="Title"
+                            value={imageUrl}
+                            onChange={e => setImageUrl(e.target.value)}
+                            placeholder="Image Url"
+                            required
+                        />
+                        <input
+                            type="text"
+                            value={caption}
+                            onChange={e => setCaption(e.target.value)}
+                            placeholder="Add a caption."
                         />
                         <input
                             type="text"
                             value={content}
                             onChange={e => setContent(e.target.value)}
-                            placeholder="Insert text here..."
+                            placeholder="Have more to say about this photo?"
                         />
                         <ul>
                             {errors.map(error => <li id="error" key={error}>{error}</li>)}
@@ -67,7 +74,7 @@ const NewTextPost = ({ mountText, setMountText }) => {
                     </form>
                 </div>
                 <div className="cancel-submit-container">
-                    <button onClick={() => setMountText(!mountText)}>cancel</button>
+                    <button onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
                     <button onClick={handleSubmit}>post</button>
                 </div>
             </div>
@@ -75,5 +82,4 @@ const NewTextPost = ({ mountText, setMountText }) => {
     )
 }
 
-
-export default NewTextPost
+export default NewPhotoPost

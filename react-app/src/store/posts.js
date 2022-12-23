@@ -44,7 +44,8 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 }
 
 export const thunkCreatePost = (post) => async (dispatch) => {
-    const { owner_id, type, title, content, quote_source, link_url, images } = post
+    const { owner_id, type, title, content, quote_source, link_url, image_url, image_caption } = post
+    console.log(post)
     const response = await fetch("/api/posts/new", {
         method: "POST",
         headers: {
@@ -57,7 +58,8 @@ export const thunkCreatePost = (post) => async (dispatch) => {
             content,
             quote_source,
             link_url,
-            images
+            image_url,
+            image_caption
         })
     })
     if (response.ok) {
