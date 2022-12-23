@@ -54,6 +54,7 @@ const Landing = () => {
                                                     <div className='post-image-caption'>{photo.text}</div>
                                                 </div>
                                             ))}
+                                            <div>{post.content}</div>
                                         </>
                                     }
                                 </div>
