@@ -88,3 +88,15 @@
 .side-section {
     border: 1px solid gray;
 }
+
+.delete-modal {
+    z-index: 99;
+    /* margin-top: 50vh; */
+    /* margin-bottom: 50vh; */
+    /* margin-left: 50vw; */
+    /* margin-right: 50vw; */
+    width: 540px;
+    height: 290px;
+    position: fixed;
+    background-color: white;
+}

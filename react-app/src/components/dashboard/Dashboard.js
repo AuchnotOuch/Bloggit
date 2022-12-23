@@ -9,8 +9,10 @@ import '../landing/Landing.css'
 const Dashboard = () => {
     const posts = useSelector(state => state.posts)
     const user = useSelector(state => state.session.user)
+
     const [mountDelete, setMountDelete] = useState(false)
     const [mountEdit, setMountEdit] = useState(false)
+    const [deleteId, setDeleteId] = useState(null)
 
     const dispatch = useDispatch()
 
@@ -18,12 +20,18 @@ const Dashboard = () => {
         dispatch(thunkGetAllPosts())
     }, [dispatch])
 
+    const mountDeleteModal = (postId) => {
+        console.log(postId)
+        setDeleteId(postId)
+        setMountDelete(!mountDelete)
+    }
     return (
         <>
             <div className="container">
                 <div className='feed-container'>
                     <div className='feed'>
                         <NewPostBar />
+                        {mountDelete && <DeletePost deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
                         {Object.values(posts).reverse().map(post => (
                             <div className='post-container'>
                                 <div className='feed-profile-photo' >
@@ -60,10 +68,9 @@ const Dashboard = () => {
                                         {post.owner.id === user.id &&
                                             <>
                                                 <button>Edit</button>
-                                                <button onClick={() => setMountDelete(!mountDelete)}>Delete</button>
+                                                <button onClick={() => mountDeleteModal(post.id)}>Delete</button>
                                             </>
                                         }
-                                        {mountDelete && <DeletePost post={post} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
                                     </div>
                                 </div>
                             </div>
