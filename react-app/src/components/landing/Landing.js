@@ -23,7 +23,7 @@ const Landing = () => {
             <h1>Landing</h1>
             <div className='feed-container'>
                 <div className='feed'>
-                    {Object.values(posts).map(post => (
+                    {Object.values(posts).reverse().map(post => (
                         <div className='post-container'>
                             <div className='feed-profile-photo' >
                                 <img src={`${post.owner.profile_photo_url}`}></img>

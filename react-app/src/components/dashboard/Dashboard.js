@@ -1,24 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { thunkGetAllPosts } from '../../store/posts';
 import NewPostBar from "../newPostBar/NewPostBar";
+import DeletePost from "../posts/Delete";
 import '../landing/Landing.css'
 
 const Dashboard = () => {
     const posts = useSelector(state => state.posts)
+    const user = useSelector(state => state.session.user)
+
+    const [mountDelete, setMountDelete] = useState(false)
+    const [mountEdit, setMountEdit] = useState(false)
+    const [deleteId, setDeleteId] = useState(null)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(thunkGetAllPosts())
     }, [dispatch])
 
+    const mountDeleteModal = (postId) => {
+        console.log(postId)
+        setDeleteId(postId)
+        setMountDelete(!mountDelete)
+    }
     return (
         <>
             <div className="container">
                 <div className='feed-container'>
                     <div className='feed'>
                         <NewPostBar />
+                        {mountDelete && <DeletePost deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
                         {Object.values(posts).reverse().map(post => (
                             <div className='post-container'>
                                 <div className='feed-profile-photo' >
@@ -50,6 +63,12 @@ const Dashboard = () => {
                                                     </div>
                                                 ))}
                                                 <div>{post.content}</div>
+                                            </>
+                                        }
+                                        {post.owner.id === user.id &&
+                                            <>
+                                                <button>Edit</button>
+                                                <button onClick={() => mountDeleteModal(post.id)}>Delete</button>
                                             </>
                                         }
                                     </div>

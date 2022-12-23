@@ -14,7 +14,7 @@ class PostImage(db.Model):
     url = db.Column(db.String(300), nullable=False)
     text = db.Column(db.String(1000))
 
-    post = relationship("Post", back_populates="photos")
+    post = relationship("Post", back_populates="photos", cascade="all, delete")
 
     def to_dict(self):
         return {

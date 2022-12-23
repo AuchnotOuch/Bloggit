@@ -99,4 +99,4 @@ def delete_post(id):
         db.session.commit()
         return {'Message': f'Post {id} successfully deleted'}
 
-    return {"Error": f'Post {id} not found'}
+    return {"Error": f'Post {id} not found'}, 404
