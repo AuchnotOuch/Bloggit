@@ -74,14 +74,15 @@
 .new-post-modal {
     position: fixed;
     width: 540px;
+    height: 290px;
     border: 1px solid grey;
     background-color: white;
 }
 
-.text-form form {
+.text-form {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
 }
 
 .side-section {

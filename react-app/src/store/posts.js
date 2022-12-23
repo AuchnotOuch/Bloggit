@@ -75,6 +75,10 @@ export default function postsReducer(state = {}, action) {
             action.payload.Posts.forEach(post => postsObj[post.id] = post)
             newState = Object.assign({ ...state }, { ...postsObj })
             return newState
+        case CREATE_POST:
+            newState = { ...state }
+            newState[action.payload.id] = action.payload
+            return newState
         default:
             return state
     }
