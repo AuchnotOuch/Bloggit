@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { thunkGetAllPosts } from '../../store/posts';
 import NewPostBar from "../newPostBar/NewPostBar";
 import DeletePost from "../posts/Delete";
+import EditPost from "../posts/Edit";
 import '../landing/Landing.css'
 
 const Dashboard = () => {
@@ -13,6 +14,7 @@ const Dashboard = () => {
     const [mountDelete, setMountDelete] = useState(false)
     const [mountEdit, setMountEdit] = useState(false)
     const [deleteId, setDeleteId] = useState(null)
+    const [editId, setEditId] = useState(null)
 
     const dispatch = useDispatch()
 
@@ -25,6 +27,12 @@ const Dashboard = () => {
         setDeleteId(postId)
         setMountDelete(!mountDelete)
     }
+
+    const mountEditModal = (postId) => {
+        setEditId(postId)
+        setMountEdit(!mountEdit)
+    }
+
     return (
         <>
             <div className="container">
@@ -32,6 +40,7 @@ const Dashboard = () => {
                     <div className='feed'>
                         <NewPostBar />
                         {mountDelete && <DeletePost deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
+                        {mountEdit && <EditPost editId={editId} mountEdit={mountEdit} setMountEdit={setMountEdit} />}
                         {Object.values(posts).reverse().map(post => (
                             <div className='post-container'>
                                 <div className='feed-profile-photo' >
@@ -67,7 +76,7 @@ const Dashboard = () => {
                                         }
                                         {post.owner.id === user.id &&
                                             <>
-                                                <button>Edit</button>
+                                                <button onClick={() => mountEditModal(post.id)}>Edit</button>
                                                 <button onClick={() => mountDeleteModal(post.id)}>Delete</button>
                                             </>
                                         }

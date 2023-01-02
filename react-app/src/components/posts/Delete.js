@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { thunkCreatePost, thunkDeletePost, thunkGetAllPosts } from "../../store/posts";
+import React from "react";
+import { useDispatch } from 'react-redux';
+import { thunkDeletePost, thunkGetAllPosts } from "../../store/posts";
 import "../landing/Landing.css"
 
 

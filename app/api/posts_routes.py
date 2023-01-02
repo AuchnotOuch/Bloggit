@@ -78,9 +78,6 @@ def update_post(id):
                 post.content = form.data['content']
             if form.data['quote_source']:
                 post.quote_source = form.data['quote_source']
-            if form.data['link_url']:
-                post.link_url = form.data['link_url']
-
             db.session.commit()
             return post.to_dict()
 

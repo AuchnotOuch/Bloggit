@@ -68,7 +68,7 @@ const NewTextPost = ({ mountText, setMountText }) => {
                 </div>
                 <div className="cancel-submit-container">
                     <button onClick={() => setMountText(!mountText)}>cancel</button>
-                    <button onClick={handleSubmit}>post</button>
+                    <button disabled={!!errors.length} onClick={handleSubmit}>post</button>
                 </div>
             </div>
         </div>
