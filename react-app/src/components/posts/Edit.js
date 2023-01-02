@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import { thunkDeletePost, thunkGetAllPosts } from "../../store/posts";
+import { thunkGetAllPosts, thunkUpdatePost } from "../../store/posts";
 import "../landing/Landing.css"
 
 
 const EditPost = ({ editId, mountEdit, setMountEdit }) => {
     const post = useSelector(state => state.posts[editId])
     const user = useSelector(state => state.session.user)
+    const dispatch = useDispatch()
 
     const [title, setTitle] = useState(post.title)
     const [content, setContent] = useState(post.content)
@@ -34,7 +35,20 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
         setErrors(errors)
     }, [title, content, source])
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
 
+        const editedPost = {
+            postId: post.id,
+            title,
+            content,
+            quote_source: source,
+        }
+
+        setMountEdit(!mountEdit)
+        dispatch(thunkUpdatePost(editedPost))
+        dispatch(thunkGetAllPosts())
+    }
     return (
         <>
             <div className="new-post-modal">
@@ -102,7 +116,7 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
                     }
                     <div className="cancel-submit-container">
                         <button onClick={() => setMountEdit(!mountEdit)}>Cancel</button>
-                        <button disabled={!!errors.length}>Save</button>
+                        <button disabled={!!errors.length} onClick={handleSubmit}>Save</button>
                     </div>
                 </div>
             </div>

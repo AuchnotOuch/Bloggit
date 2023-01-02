@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Post, User, PostImage
 from app.forms import NewPostForm, EditPostForm
@@ -64,7 +64,6 @@ def update_post(id):
     """
     Updates a post with updated form data
     """
-
     form = EditPostForm()
     user = current_user
     post = Post.query.get(id)
