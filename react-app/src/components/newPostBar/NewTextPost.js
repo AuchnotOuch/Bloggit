@@ -45,21 +45,27 @@ const NewTextPost = ({ mountText, setMountText }) => {
             <div className='feed-profile-photo' >
                 <img src={`${user.profile_photo_url}`}></img>
             </div>
-            <div className='post-header'>
-                <Link to={`/${user.username}`}>{user.username}</Link>
+            <div className='new-post-header'>
+                <div className="new-header-section">
+                    <Link to={`/${user.username}`}>{user.username}</Link>
+                </div>
                 <div className='text-form-container'>
                     <form className="text-form">
+
                         <input
                             type="text"
                             value={title}
                             onChange={e => setTitle(e.target.value)}
                             placeholder="Title"
+                            id="title-input"
                         />
-                        <input
+
+                        <textarea
                             type="text"
                             value={content}
                             onChange={e => setContent(e.target.value)}
                             placeholder="Insert text here..."
+                            id="content-input"
                         />
                         <ul>
                             {errors.map(error => <li id="error" key={error}>{error}</li>)}
@@ -68,7 +74,7 @@ const NewTextPost = ({ mountText, setMountText }) => {
                 </div>
                 <div className="cancel-submit-container">
                     <button onClick={() => setMountText(!mountText)}>cancel</button>
-                    <button onClick={handleSubmit}>post</button>
+                    <button disabled={!!errors.length} onClick={handleSubmit}>post</button>
                 </div>
             </div>
         </div>

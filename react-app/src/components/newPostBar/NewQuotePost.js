@@ -67,7 +67,7 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
                 </div>
                 <div className="cancel-submit-container">
                     <button onClick={() => setMountQuote(!mountQuote)}>cancel</button>
-                    <button onClick={handleSubmit}>post</button>
+                    <button disabled={!!errors.length} onClick={handleSubmit}>post</button>
                 </div>
             </div>
         </div>

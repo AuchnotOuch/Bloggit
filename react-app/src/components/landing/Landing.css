@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(0, 0, 17);
+}
+
 .container {
     display: flex;
     flex-direction: row;
@@ -11,11 +15,24 @@
     justify-content: center;
 }
 
+.feed-header {
+    color: whitesmoke;
+    margin-left: 95px;
+    width: 540px
+}
+
+.feed-header>h2 {
+    border-bottom: 1px solid rgba(34, 34, 34, 255);
+
+}
+
 .post-container {
     display: flex;
     flex-direction: row;
-    border: 1px solid grey;
+    border-right: 1px solid rgba(34, 34, 34, 255);
     width: 624px;
+    margin-right: 20px;
+    padding-right: 20px;
     margin-bottom: 10px;
 }
 
@@ -27,8 +44,10 @@
 .feed-profile-photo {
     height: 64px;
     width: 64px;
-    border: 1px solid grey;
-    /* margin-right: 64px; */
+    /* border: 1px solid grey; */
+    border-radius: 3px;
+    background-color: rgba(128, 128, 128, 0.506);
+    margin-right: 30px;
 }
 
 .feed-profile-photo>img {
@@ -38,6 +57,43 @@
 
 .post-header {
     width: 540px;
+    background-color: rgba(34, 34, 34, 255);
+    border-radius: 3px;
+}
+
+.header-section {
+    /* height: 20px; */
+    padding: 15px;
+    border-bottom: 1px solid rgba(245, 245, 245, 0.192);
+}
+
+.header-section>a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.post-content {
+    color: grey;
+    background-color: rgba(34, 34, 34, 255);
+    /* border: solid; */
+    border-radius: 3px;
+    word-wrap: break-word;
+}
+
+.edit-delete-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.edit-delete-buttons>button {
+    background: none;
+    border: none;
+}
+
+.fa-pen-to-square,
+.fa-trash-can {
+    color: whitesmoke;
 }
 
 .post-image {
@@ -57,13 +113,15 @@
     width: 540px;
     height: 100px;
     margin-bottom: 20px;
-    border: 1px solid gray;
+    background-color: rgba(34, 34, 34, 255);
+    border-radius: 3px;
+    /* border: 1px solid gray; */
 }
 
 .new-post-option-button {
     width: 100px;
     height: 100px;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
 }
 
 .new-post-option-button input {
@@ -86,7 +144,11 @@
 }
 
 .side-section {
-    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid gray; */
+    width: 320px;
+    color: whitesmoke;
 }
 
 .delete-modal {
@@ -99,4 +161,106 @@
     height: 290px;
     position: fixed;
     background-color: white;
+}
+
+nav {
+    display: flex;
+    height: 40px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    list-style: none;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(34, 34, 34, 255);
+}
+
+.login-signup {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-button {
+    margin-right: 5px;
+    padding: 5px;
+    border: 1px solid grey;
+    background-color: greenyellow;
+}
+
+.signup-button {
+    padding: 5px;
+    background-color: rgb(118, 232, 249);
+}
+
+.title {
+    font-size: xx-large;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-left: 15px;
+    color: whitesmoke
+}
+
+.content {
+    padding-top: 15px;
+    padding-left: 15px;
+    color: whitesmoke
+}
+
+
+.quote-body {
+    font-size: xx-large;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-left: 15px;
+    color: whitesmoke
+}
+
+.quote-source {
+    padding-top: 15px;
+    padding-left: 15px;
+    color: whitesmoke;
+    font-style: italic;
+}
+
+.post-image-caption {
+    font-size: xx-large;
+    font-weight: bold;
+    padding-top: 15px;
+    padding-left: 15px;
+    color: whitesmoke
+}
+
+.photo-content {
+    padding-top: 15px;
+    padding-left: 15px;
+    color: whitesmoke;
+}
+
+.new-post-header {
+    background-color: white;
+    margin-bottom: 15px;
+
+}
+
+.new-header-section {
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(245, 245, 245, 0.192);
+}
+
+.text-form-container {
+    background-color: white;
+
+}
+
+#title-input {
+    background: none;
+    border: none;
+    font-size: xx-large;
+}
+
+#content-input {
+    background: none;
+    border: none;
+    height: 100px;
+    width: 400px;
 }
