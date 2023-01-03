@@ -118,7 +118,9 @@ export default function postsReducer(state = {}, action) {
             return newState
         case DELETE_POST:
             newState = { ...state }
+            console.log(newState)
             delete newState[action.payload]
+            console.log(newState)
             return newState
         default:
             return state
