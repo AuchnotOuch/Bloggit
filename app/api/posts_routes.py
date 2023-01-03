@@ -29,7 +29,7 @@ def add_post():
     Creates a new post based on submitted form data
     """
     form = NewPostForm()
-    print(form.data)
+
     user = current_user
 
     form['csrf_token'].data = request.cookies['csrf_token']

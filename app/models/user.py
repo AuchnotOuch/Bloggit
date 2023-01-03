@@ -39,5 +39,4 @@ class User(db.Model, UserMixin):
             'profile_photo_url': self.profile_photo_url,
             'blog_title': self.blog_title,
             'description': self.description,
-            'comments': [comment.to_dict() for comment in self.user_comments]
         }
