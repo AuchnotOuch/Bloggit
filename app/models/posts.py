@@ -22,6 +22,7 @@ class Post(db.Model):
 
     owner = relationship("User", back_populates="posts")
     photos = relationship("PostImage", back_populates="post", cascade="all, delete")
+    post_comments = relationship("User", back_populates="user_comments", secondary="comments")
 
     def to_dict(self):
         return {
@@ -35,5 +36,6 @@ class Post(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'owner': self.owner.to_dict(),
-            'photos': [photo.to_dict() for photo in self.photos]
+            'photos': [photo.to_dict() for photo in self.photos],
+            'comments': [comment.to_dict() for comment in self.post_comments]
         }
