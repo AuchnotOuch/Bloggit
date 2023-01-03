@@ -39,6 +39,9 @@ const Dashboard = () => {
                 <div className='feed-container'>
                     <div className='feed'>
                         <NewPostBar />
+                        <div className="feed-header">
+                            <h2>Feed</h2>
+                        </div>
                         {mountDelete && <DeletePost deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
                         {mountEdit && <EditPost editId={editId} mountEdit={mountEdit} setMountEdit={setMountEdit} />}
                         {Object.values(posts).reverse().map(post => (
@@ -47,7 +50,9 @@ const Dashboard = () => {
                                     <img src={`${post.owner.profile_photo_url}`}></img>
                                 </div>
                                 <div className='post-header'>
-                                    <Link to={`/${post.owner.username}/post/${post.id}`}>{post.owner.username}</Link>
+                                    <div className="header-section">
+                                        <Link to={`/${post.owner.username}/post/${post.id}`}>{post.owner.username}</Link>
+                                    </div>
                                     <div className='post-content'>
                                         {post.type === 'text' &&
                                             <>
@@ -71,13 +76,15 @@ const Dashboard = () => {
                                                         <div className='post-image-caption'>{photo.text}</div>
                                                     </div>
                                                 ))}
-                                                <div>{post.content}</div>
+                                                <div className="photo-content">{post.content}</div>
                                             </>
                                         }
                                         {post.owner.id === user.id &&
                                             <>
-                                                <button onClick={() => mountEditModal(post.id)}>Edit</button>
-                                                <button onClick={() => mountDeleteModal(post.id)}>Delete</button>
+                                                <div className="edit-delete-buttons">
+                                                    <button onClick={() => mountEditModal(post.id)}><i class="fa-regular fa-pen-to-square"></i></button>
+                                                    <button onClick={() => mountDeleteModal(post.id)}><i class="fa-regular fa-trash-can"></i></button>
+                                                </div>
                                             </>
                                         }
                                     </div>

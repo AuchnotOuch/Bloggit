@@ -18,12 +18,12 @@ const NavBar = () => {
       {!user &&
         <>
           <div className='login-signup'>
-            <div>
+            <div className='login-button'>
               <NavLink to='/login' exact={true} activeClassName='active'>
                 Login
               </NavLink>
             </div>
-            <div>
+            <div className='signup-button'>
               <NavLink to='/sign-up' exact={true} activeClassName='active'>
                 Sign Up
               </NavLink>
