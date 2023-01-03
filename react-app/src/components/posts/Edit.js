@@ -47,7 +47,7 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
 
         setMountEdit(!mountEdit)
         dispatch(thunkUpdatePost(editedPost))
-        dispatch(thunkGetAllPosts())
+        // dispatch(thunkGetAllPosts())
     }
     return (
         <>

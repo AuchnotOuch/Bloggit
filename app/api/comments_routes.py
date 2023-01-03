@@ -49,7 +49,7 @@ def add_comment(id):
 @login_required
 def edit_comment(id):
     """
-    Add a comment to a post
+    Edit a comment to a post
     """
     form = EditCommentForm()
 
