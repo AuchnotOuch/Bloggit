@@ -20,7 +20,3 @@ class EditPostForm(FlaskForm):
     def validate_quote_source(self, quote_source):
         if quote_source.data and len(quote_source.data) > 100:
             raise ValidationError('Quote source must be 100 or less characters')
-
-    def validate_link_url(self, link_url):
-        if link_url.data and len(link_url.data) > 300:
-            raise ValidationError('Link must be 300 or less characters')
