@@ -51,72 +51,81 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
     }
     return (
         <>
-            <div className="new-post-modal">
-                <div className='feed-profile-photo' >
-                    <img src={`${user.profile_photo_url}`}></img>
-                </div>
-                <div className='post-header'>
-                    <Link to={`/${user.username}`}>{user.username}</Link>
-                    {post.type === 'text' &&
-                        <div className='text-form-container'>
-                            <form className="text-form">
-                                <input
-                                    type="text"
-                                    value={title}
-                                    onChange={e => setTitle(e.target.value)}
-                                    placeholder="Title"
-                                />
-                                <input
-                                    type="text"
-                                    value={content}
-                                    onChange={e => setContent(e.target.value)}
-                                    placeholder="Insert text here..."
-                                />
-                                <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
-                                </ul>
-                            </form>
+            <div className="background-blur">
+                <div className="new-post-modal">
+                    <div className='feed-profile-photo' >
+                        <img src={`${user.profile_photo_url}`}></img>
+                    </div>
+                    <div className='new-post-header'>
+                        <div className="new-header-section">
+                            <Link to={`/${user.username}`}>{user.username}</Link>
                         </div>
-                    }
-                    {post.type === 'quote' &&
-                        <div className='text-form-container'>
-                            <form className="text-form">
-                                <input
-                                    type="text"
-                                    value={content}
-                                    onChange={e => setContent(e.target.value)}
-                                    placeholder="Quote"
-                                />
-                                <input
-                                    type="text"
-                                    value={source}
-                                    onChange={e => setSource(e.target.value)}
-                                    placeholder="Source"
-                                />
-                                <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
-                                </ul>
-                            </form>
+                        {post.type === 'text' &&
+                            <div className='text-form-container'>
+                                <form className="text-form">
+                                    <input
+                                        type="text"
+                                        value={title}
+                                        onChange={e => setTitle(e.target.value)}
+                                        placeholder="Title"
+                                        id="title-input"
+                                    />
+                                    <textarea
+                                        type="text"
+                                        value={content}
+                                        onChange={e => setContent(e.target.value)}
+                                        placeholder="Insert text here..."
+                                        id="content-input"
+                                    />
+                                    <ul>
+                                        {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    </ul>
+                                </form>
+                            </div>
+                        }
+                        {post.type === 'quote' &&
+                            <div className='text-form-container'>
+                                <form className="text-form">
+                                    <input
+                                        type="text"
+                                        value={content}
+                                        onChange={e => setContent(e.target.value)}
+                                        placeholder="Quote"
+                                        id="content-input"
+                                    />
+                                    <input
+                                        type="text"
+                                        value={source}
+                                        onChange={e => setSource(e.target.value)}
+                                        placeholder="Source"
+                                        id="title-input"
+                                    />
+                                    <ul>
+                                        {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    </ul>
+                                </form>
+                            </div>
+                        }
+                        {post.type === 'photo' &&
+                            <div className='text-form-container'>
+                                <form className="text-form">
+                                    <input
+                                        type="text"
+                                        value={content}
+                                        onChange={e => setContent(e.target.value)}
+                                        placeholder="Have more to say about this photo?"
+                                        id="content-input"
+                                    />
+                                    <ul>
+                                        {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    </ul>
+                                </form>
+                            </div>
+                        }
+                        <div className="cancel-submit-container">
+                            <button onClick={() => setMountEdit(!mountEdit)}>Cancel</button>
+                            <button disabled={!!errors.length} onClick={handleSubmit}>Save</button>
                         </div>
-                    }
-                    {post.type === 'photo' &&
-                        <div className='text-form-container'>
-                            <form className="text-form">
-                                <input
-                                    type="text"
-                                    value={content}
-                                    onChange={e => setContent(e.target.value)}
-                                    placeholder="Have more to say about this photo?"
-                                />
-                                <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
-                                </ul>
-                            </form>
-                        </div>
-                    }
-                    <div className="cancel-submit-container">
-                        <button onClick={() => setMountEdit(!mountEdit)}>Cancel</button>
-                        <button disabled={!!errors.length} onClick={handleSubmit}>Save</button>
                     </div>
                 </div>
             </div>
