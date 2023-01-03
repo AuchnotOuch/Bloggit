@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     posts = relationship("Post", back_populates="owner")
+    user_comments = relationship("Post", back_populates='post_comments', secondary="comments")
 
     @property
     def password(self):
@@ -37,5 +38,5 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'profile_photo_url': self.profile_photo_url,
             'blog_title': self.blog_title,
-            'description': self.description
+            'description': self.description,
         }

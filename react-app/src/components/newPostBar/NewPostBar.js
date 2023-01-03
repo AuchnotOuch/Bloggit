@@ -47,13 +47,16 @@ const NewPostBar = () => {
                 </div>
                 <div className='new-post-options'>
                     <div className='new-post-option-button'>
-                        <input onClick={() => mountTextModal()} type='image' src='https://www.svgrepo.com/show/372715/text.svg'></input>
+                        <button id='new-text-button' onClick={() => mountTextModal()}><i className="fa-solid fa-font"></i></button>
+                        <div className='post-type-name-footer'>Text</div>
                     </div>
                     <div className='new-post-option-button'>
-                        <input onClick={() => mountQuoteModal()} type='image' src='https://www.svgrepo.com/show/340879/quotes.svg'></input>
+                        <button id='new-photo-button' onClick={() => mountPhotoModal()}><i className="fa-regular fa-image"></i></button>
+                        <div className='post-type-name-footer'>Image</div>
                     </div>
                     <div className='new-post-option-button'>
-                        <input onClick={() => mountPhotoModal()} type='image' src='https://www.svgrepo.com/show/158771/photo.svg'></input>
+                        <button id='new-quote-button' onClick={() => mountQuoteModal()}><i className="fa-solid fa-quote-left"></i></button>
+                        <div className='post-type-name-footer'>Quote</div>
                     </div>
                 </div>
             </div>

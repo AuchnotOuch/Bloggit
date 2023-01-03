@@ -82,8 +82,8 @@ const Dashboard = () => {
                                         {post.owner.id === user.id &&
                                             <>
                                                 <div className="edit-delete-buttons">
-                                                    <button onClick={() => mountEditModal(post.id)}><i class="fa-regular fa-pen-to-square"></i></button>
-                                                    <button onClick={() => mountDeleteModal(post.id)}><i class="fa-regular fa-trash-can"></i></button>
+                                                    <button onClick={() => mountEditModal(post.id)}><i className="fa-regular fa-pen-to-square"></i></button>
+                                                    <button onClick={() => mountDeleteModal(post.id)}><i className="fa-regular fa-trash-can"></i></button>
                                                 </div>
                                             </>
                                         }
