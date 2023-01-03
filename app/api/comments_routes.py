@@ -30,6 +30,7 @@ def add_comment(id):
     form = NewCommentForm()
 
     user = current_user
+    print(user.id)
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -62,4 +63,16 @@ def edit_comment(id):
             db.session.commit()
             return comment.to_dict()
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-    return {'Error': f"Comment {id} not found"}
+    return {'Error': f"Comment {id} not found"}, 404
+
+@comments_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_comment(id):
+
+    comment = Comment.query.get(id)
+
+    if comment is not None:
+        db.session.delete(comment)
+        db.session.commit()
+        return {'Message': f"Comment {id} successfully deleted"}
+    return {"Error": f"Comment {id} not found"}, 404
