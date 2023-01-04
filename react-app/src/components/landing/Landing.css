@@ -314,3 +314,15 @@ nav {
     width: 400px;
     resize: none;
 }
+
+.post-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+    border-top: 1px solid rgba(245, 245, 245, 0.192);
+}
+
+.comment-like-container {
+    display: flex;
+}

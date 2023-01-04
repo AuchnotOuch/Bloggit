@@ -87,6 +87,12 @@ const Dashboard = () => {
                                                 </div>
                                             </>
                                         }
+                                        <div className="post-footer">
+                                            <div>Notes</div>
+                                            <div className="comment-like-container">
+                                                <div><i class="fa-regular fa-comment"></i></div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
