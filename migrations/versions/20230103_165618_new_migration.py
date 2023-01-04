@@ -1,8 +1,8 @@
 """new-migration
 
-Revision ID: 9537d1e54bb3
+Revision ID: 1f13961d2474
 Revises:
-Create Date: 2023-01-03 10:06:23.082127
+Create Date: 2023-01-03 16:56:18.771662
 
 """
 from alembic import op
@@ -11,8 +11,9 @@ import sqlalchemy as sa
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
+
 # revision identifiers, used by Alembic.
-revision = '9537d1e54bb3'
+revision = '1f13961d2474'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,6 +37,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
+
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
@@ -53,6 +55,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
 
+
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=False),
@@ -68,6 +71,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
 
+
     op.create_table('post_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=False),
@@ -79,6 +83,7 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE post_images SET SCHEMA {SCHEMA};")
+
     # ### end Alembic commands ###
 
 
