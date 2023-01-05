@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -9,8 +9,22 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [profilePhoto, setProfilePhoto] = useState('')
+  const [blogTitle, setBlogTitle] = useState('')
+  const [description, setDescription] = useState('')
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const errorArr = []
+    const picTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg']
+
+    if (!picTypes.includes(profilePhoto.split(".").pop())) {
+      errorArr.push("Please provide a jpg, jpeg, png, gif, or svg")
+    }
+
+    setErrors(errorArr)
+  }, [profilePhoto])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -46,9 +60,9 @@ const SignUpForm = () => {
     <div className='login-container'>
       <form onSubmit={onSignUp}>
         <div>
-          {errors.map((error, ind) => (
+          {/* {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
-          ))}
+          ))} */}
         </div>
         <div>
           {/* <label>User Name</label> */}
@@ -69,6 +83,17 @@ const SignUpForm = () => {
             onChange={updateEmail}
             value={email}
             placeholder='Email'
+            id='email-input'
+          ></input>
+        </div>
+        <div>
+          {/* <label>Email</label> */}
+          <input
+            type='text'
+            name='profile-photo'
+            onChange={e => setProfilePhoto(e.target.value)}
+            value={profilePhoto}
+            placeholder='Profile Photo Url'
             id='email-input'
           ></input>
         </div>
@@ -95,8 +120,11 @@ const SignUpForm = () => {
             id='email-input'
           ></input>
         </div>
-        <button id='demo-button' type='submit'>Sign Up</button>
+        <button disabled={!!errors.length} id='demo-button' type='submit'>Sign Up</button>
       </form>
+      {errors.map((error, ind) => (
+        <div key={ind}>{error}</div>
+      ))}
     </div>
   );
 };

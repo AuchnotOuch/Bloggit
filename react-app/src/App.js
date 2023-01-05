@@ -10,6 +10,7 @@ import User from './components/User';
 import Landing from './components/landing/Landing'
 import Dashboard from './components/dashboard/Dashboard'
 import { authenticate } from './store/session';
+import '../src/components/landing/Landing.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +48,9 @@ function App() {
         </ProtectedRoute>
         <Route path='/' exact={true} >
           <Landing />
+        </Route>
+        <Route path='/'>
+          <div className='four-o-four'><h1 className='four-o-four'>404: Uh oh! We couldn't find that page!</h1></div>
         </Route>
       </Switch>
     </BrowserRouter>
