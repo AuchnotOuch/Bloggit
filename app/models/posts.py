@@ -22,7 +22,7 @@ class Post(db.Model):
 
     owner = relationship("User", back_populates="posts")
     photos = relationship("PostImage", back_populates="post", cascade="all, delete")
-    comments = relationship("Comment", back_populates="post")
+    comments = relationship("Comment", back_populates="post", cascade="all, delete")
 
     def to_dict(self):
         return {

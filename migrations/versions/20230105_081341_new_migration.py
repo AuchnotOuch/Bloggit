@@ -1,8 +1,8 @@
 """new-migration
 
-Revision ID: 1f13961d2474
+Revision ID: d3a66d7415cd
 Revises:
-Create Date: 2023-01-03 16:56:18.771662
+Create Date: 2023-01-05 08:13:41.152825
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '1f13961d2474'
+revision = 'd3a66d7415cd'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,7 +37,6 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
 
-
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
@@ -55,7 +54,6 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
 
-
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('post_id', sa.Integer(), nullable=False),
@@ -70,7 +68,6 @@ def upgrade():
 
     if environment == "production":
         op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
-
 
     op.create_table('post_images',
     sa.Column('id', sa.Integer(), nullable=False),
