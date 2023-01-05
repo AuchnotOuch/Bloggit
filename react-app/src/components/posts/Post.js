@@ -24,7 +24,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     return (
         <div className='post-container'>
             <div className='feed-profile-photo' >
-                <img src={`${post.owner.profile_photo_url}`}></img>
+                <img src={`${post.owner.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
             </div>
             <div className='post-header'>
                 <div className="header-section">
@@ -48,7 +48,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
                             {Object.values(post.photos).map(photo => (
                                 <div className='image-post-container'>
                                     <div className='post-image'>
-                                        <img src={photo.url}></img>
+                                        <img src={photo.url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                                     </div>
                                     <div className='post-image-caption'>{photo.text}</div>
                                 </div>
