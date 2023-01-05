@@ -66,6 +66,11 @@ const Dashboard = () => {
                         <h2>Radar</h2>
                         <div className='featured-blogs'>
                             <div className='single-featured-blog'>
+                                {featuredPost.type === 'photo' &&
+                                    <div>
+                                        <img id='featured-photo' src={featuredPost.photos[0].url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
+                                    </div>
+                                }
                                 <div id='featured-title'>
                                     {featuredPost.title
                                         ? featuredPost.title

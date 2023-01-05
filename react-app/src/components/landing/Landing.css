@@ -580,6 +580,10 @@ nav {
     font-style: italic;
 }
 
+#featured-photo {
+    width: 275px;
+}
+
 #featured-post-owner {
     width: 50px;
 }

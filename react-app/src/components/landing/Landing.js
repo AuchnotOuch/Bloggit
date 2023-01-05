@@ -11,10 +11,8 @@ const Landing = () => {
     Object.values(posts).forEach(post => postsArr.push(post))
     const featuredPost = postsArr[Math.floor(Math.random() * (postsArr.length))]
 
-    console.log(posts)
-    console.log(featuredPost)
     const user = useSelector(state => state.session.user)
-    const [users, setUsers] = useState([])
+
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -80,16 +78,21 @@ const Landing = () => {
                     <h2>Radar</h2>
                     <div className='featured-blogs'>
                         <div className='single-featured-blog'>
+                            {featuredPost.type === 'photo' &&
+                                <div>
+                                    <img id='featured-photo' src={featuredPost.photos[0].url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
+                                </div>
+                            }
                             <div id='featured-title'>
                                 {featuredPost.title
                                     ? featuredPost.title
                                     : ""
                                 }
                             </div>
-                            <div id='featured-content'>
-                                {featuredPost.content}
-                            </div>
-                            <div>
+                            {featuredPost.type === 'quote'
+                                ? <div id="featured-quote">"{featuredPost.content}"</div>
+                                : <div id="featured-content">{featuredPost.content}</div>}
+                            <div id="featured-quote-source">
                                 {featuredPost.quote_source
                                     ? "-" + featuredPost.quote_source
                                     : ''
