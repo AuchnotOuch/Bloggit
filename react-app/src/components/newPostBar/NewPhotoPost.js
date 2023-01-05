@@ -17,8 +17,14 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
 
     useEffect(() => {
         const errors = []
+        const picTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg']
+
         if (!imageUrl) {
             errors.push("You must provide an image url")
+        }
+
+        if (!picTypes.includes(imageUrl.split(".").pop())) {
+            errors.push("Please provide a jpg, jpeg, png, gif, or svg")
         }
         setErrors(errors)
     }, [imageUrl])
