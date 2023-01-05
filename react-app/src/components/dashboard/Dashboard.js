@@ -24,18 +24,16 @@ const Dashboard = () => {
     const [editId, setEditId] = useState(null)
     const [postId, setPostId] = useState(null)
     const [commentPost, setCommentPost] = useState(null)
-    // const [postComments, setPostComments] = useState({})
 
-    // console.log(postComments)
+    let postsArr = []
+    Object.values(posts).forEach(post => postsArr.push(post))
+    const featuredPost = postsArr[Math.floor(Math.random() * (postsArr.length))]
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(thunkGetAllPosts())
     }, [dispatch])
-
-    useEffect(() => {
-
-    })
 
     const mountDeleteModal = (postId) => {
         console.log(postId)
@@ -47,22 +45,8 @@ const Dashboard = () => {
         setEditId(postId)
         setMountEdit(!mountEdit)
     }
-
-    const mountCommentSection = (postId) => {
-        // e.stopPropagation()
-        if (mountComments) {
-            dispatch(actionClearComments())
-            // setPostComments({})
-            setMountComments(!mountComments)
-            return
-        }
-
-        dispatch(thunkGetAllComments(postId))
-        // setPostComments(comments)
-        setMountComments(!mountComments)
-        return
-    }
-
+    if (!featuredPost) return null
+    if (!featuredPost.photos) return null
     return (
         <>
             <div className="container">
@@ -78,7 +62,36 @@ const Dashboard = () => {
                             <Post post={post} user={user} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
                         ))}
                     </div>
-                    <div className='side-section'>Side Section</div>
+                    <div className='side-section'>
+                        <h2>Radar</h2>
+                        <div className='featured-blogs'>
+                            <div className='single-featured-blog'>
+                                <div id='featured-title'>
+                                    {featuredPost.title
+                                        ? featuredPost.title
+                                        : ""
+                                    }
+                                </div>
+                                {featuredPost.type === 'quote'
+                                    ? <div id="featured-quote">"{featuredPost.content}"</div>
+                                    : <div id="featured-content">{featuredPost.content}</div>}
+                                <div id="featured-quote-source">
+                                    {featuredPost.quote_source
+                                        ? "-" + featuredPost.quote_source
+                                        : ''
+                                    }
+                                </div>
+                            </div>
+                            <div className='featured-post-owner-container'>
+                                <div>
+                                    <img id='featured-post-owner' src={featuredPost.owner.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
+                                </div>
+                                <div>
+                                    - {featuredPost.owner.username}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

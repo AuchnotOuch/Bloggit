@@ -123,8 +123,8 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
                             </div>
                         }
                         <div className="cancel-submit-container">
-                            <button onClick={() => setMountEdit(!mountEdit)}>Cancel</button>
-                            <button disabled={!!errors.length} onClick={handleSubmit}>Save</button>
+                            <button id='cancel-text' onClick={() => setMountEdit(!mountEdit)}>Cancel</button>
+                            <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>Save</button>
                         </div>
                     </div>
                 </div>
