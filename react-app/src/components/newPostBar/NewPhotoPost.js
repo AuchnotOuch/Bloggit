@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actionClearComments } from "../../store/comments";
 import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
 import "../landing/Landing.css"
 
@@ -38,6 +39,7 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
 
         setMountPhoto(!mountPhoto)
         dispatch(thunkCreatePost(newPhotoPost))
+        dispatch(actionClearComments())
         dispatch(thunkGetAllPosts())
     }
     return (
@@ -79,8 +81,8 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                         </form>
                     </div>
                     <div className="cancel-submit-container">
-                        <button onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
-                        <button disabled={!!errors.length} onClick={handleSubmit}>post</button>
+                        <button id='cancel-text' onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
+                        <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>post</button>
                     </div>
                 </div>
             </div>
