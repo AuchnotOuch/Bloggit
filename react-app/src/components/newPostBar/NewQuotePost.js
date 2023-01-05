@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actionClearComments } from "../../store/comments";
 import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
 import "../landing/Landing.css"
 
@@ -37,6 +38,7 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
         }
         setMountQuote(!mountQuote)
         dispatch(thunkCreatePost(newQuotePost))
+        dispatch(actionClearComments())
         dispatch(thunkGetAllPosts())
     }
     return (

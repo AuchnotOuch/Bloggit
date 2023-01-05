@@ -12,6 +12,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     const mountCommentSection = (postId) => {
         if (mountComments) {
             dispatch(actionClearComments())
+            dispatch(thunkGetAllComments(postId))
             setMountComments(!mountComments)
             return
         }

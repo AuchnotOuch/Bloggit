@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkUpdateComment, thunkGetAllComments, thunkDeleteComment } from "../../store/comments";
+import { thunkUpdateComment, thunkGetAllComments, thunkDeleteComment, actionClearComments } from "../../store/comments";
 import "../landing/Landing.css"
 
 const SingleComment = ({ comment }) => {
@@ -44,6 +44,7 @@ const SingleComment = ({ comment }) => {
 
     const handleDelete = () => {
         dispatch(thunkDeleteComment(comment.id))
+        dispatch(actionClearComments())
         dispatch(thunkGetAllComments(comment.post_id))
     }
     return (
