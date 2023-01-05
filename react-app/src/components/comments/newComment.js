@@ -43,7 +43,7 @@ const NewComment = ({ postId }) => {
 
             <div className="new-comment">
                 <div className="comment-pic-input">
-                    <img id='comment-user-image' src={user.profile_photo_url} />
+                    <img id='comment-user-image' src={user.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
                     <form onSubmit={handleSubmit}>
                         <div id="comment-input-submit">
                             <textarea
