@@ -19,17 +19,40 @@ const SignUpForm = () => {
     const errorArr = []
     const picTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg']
 
+    const validUrl = (str) => {
+      try {
+        const url = new URL(str)
+        if (url.protocol === 'http:' || url.protocol === 'https:') {
+          return true
+        }
+      }
+      catch (e) {
+        return false
+      }
+    }
+
+    if (username.length > 40 || username.length < 1) {
+      errorArr.push('Username must be 40 characters or less and greater than 1')
+    }
+    if (!validUrl(profilePhoto)) {
+      errorArr.push('Please provide a valid image link')
+    }
     if (!picTypes.includes(profilePhoto.split(".").pop())) {
       errorArr.push("Please provide a jpg, jpeg, png, gif, or svg")
     }
-
+    if (password.length < 8) {
+      errorArr.push("Password must be 8 or more characters")
+    }
+    if (password !== repeatPassword) {
+      errorArr.push("Passwords must match!")
+    }
     setErrors(errorArr)
-  }, [profilePhoto])
+  }, [profilePhoto, username, password, repeatPassword])
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, password, profilePhoto));
       if (data) {
         setErrors(data)
       }

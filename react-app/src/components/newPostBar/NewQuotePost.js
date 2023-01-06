@@ -16,7 +16,7 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
     useEffect(() => {
         const errors = []
         if (!source && !content) {
-            errors.push("You must provide a quote and a source")
+            errors.push("A quote is required")
         }
         if (source.length > 100) {
             errors.push("Source must be 100 or less characters")
@@ -53,20 +53,25 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
                     </div>
                     <div className='text-form-container'>
                         <form className="text-form">
-                            <textarea
-                                type="text"
-                                value={content}
-                                onChange={e => setContent(e.target.value)}
-                                placeholder="Quote"
-                                id="content-input"
-                            />
-                            <input
-                                type="text"
-                                value={source}
-                                onChange={e => setSource(e.target.value)}
-                                placeholder="Source"
-                                id="title-input"
-                            />
+                            <div>
+                                <textarea
+                                    type="text"
+                                    value={content}
+                                    onChange={e => setContent(e.target.value)}
+                                    placeholder='"Quote"'
+                                    id="quote-input"
+                                />
+                            </div>
+                            <div>
+                                <label>-</label>
+                                <input
+                                    type="text"
+                                    value={source}
+                                    onChange={e => setSource(e.target.value)}
+                                    placeholder="Source"
+                                    id="quote-source-input"
+                                />
+                            </div>
                             <ul>
                                 {errors.map(error => <li id="error" key={error}>{error}</li>)}
                             </ul>

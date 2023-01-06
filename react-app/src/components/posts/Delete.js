@@ -17,10 +17,9 @@ const DeletePost = ({ deleteId, mountDelete, setMountDelete }) => {
             <div className="background-blur">
                 <div className="delete-modal">
                     <p>Are you sure you want to delete this post?</p>
-                    <div>
-                        <span><button onClick={() => setMountDelete(!mountDelete)}>No</button></span>
-                        <span><button onClick={handleDelete}>Yes</button></span>
-
+                    <div className="delete-message">
+                        <span><button id='cancel-delete' onClick={() => setMountDelete(!mountDelete)}>No</button></span>
+                        <span><button id='submit-delete' onClick={handleDelete}>Yes</button></span>
                     </div>
                 </div>
             </div>

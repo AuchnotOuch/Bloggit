@@ -1,0 +1,21 @@
+.single-post-modal {
+    position: fixed;
+    left: 17%;
+    width: 960px;
+    height: 100vh;
+    background-color: rgba(34, 34, 34, 255);
+    z-index: 99;
+    padding: 20px;
+}
+
+.single-post {
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+    background-color: rgba(0, 0, 0, 0.526);
+}
+
+.single-post-header {
+    padding: 20px;
+    background-color: white;
+}

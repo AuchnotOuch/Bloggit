@@ -11,6 +11,7 @@ import Landing from './components/landing/Landing'
 import Dashboard from './components/dashboard/Dashboard'
 import { authenticate } from './store/session';
 import '../src/components/landing/Landing.css'
+import SinglePost from './components/posts/singlePost';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,6 +37,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/:userName/post/:postId' exact={true}>
+          <SinglePost />
         </Route>
         <ProtectedRoute path='/dashboard' exact={true}>
           <Dashboard />
