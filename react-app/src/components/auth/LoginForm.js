@@ -43,11 +43,6 @@ const LoginForm = () => {
     <div className='login-container'>
       <form onSubmit={onLogin}>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
-        </div>
-        <div>
           {/* <label htmlFor='email'>Email</label> */}
           <input
             name='email' e
@@ -74,6 +69,11 @@ const LoginForm = () => {
           <button id='demo-button' type='submit' onClick={demoLogin}>Demo User</button>
         </div>
       </form>
+      <div>
+        {errors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+        ))}
+      </div>
 
 
     </div>

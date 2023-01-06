@@ -23,6 +23,7 @@ alembic = "*"
 python-dateutil = "*"
 python-editor = "*"
 mako = "*"
+email-validator = "*"
 
 [dev-packages]
 
