@@ -41,8 +41,16 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
         if (!validUrl(imageUrl)) {
             errors.push('Please provide a valid image link')
         }
+
+        if (caption && caption.length > 1000) {
+            errors.push("Caption must be 1000 or less characters")
+        }
+
+        if (content && content.length > 10000) {
+            errors.push("Post content must be 10000 or less characters")
+        }
         setErrors(errors)
-    }, [imageUrl])
+    }, [imageUrl, caption, content])
 
 
     const handleSubmit = (e) => {
@@ -96,9 +104,9 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                                 placeholder="Have more to say about this photo?"
                                 id="content-input"
                             />
-                            <ul>
-                                {errors.map(error => <li id="error" key={error}>{error}</li>)}
-                            </ul>
+                            <div>
+                                {errors.map(error => <div id="error" key={error}>{error}</div>)}
+                            </div>
                         </form>
                     </div>
                     <div className="cancel-submit-container">

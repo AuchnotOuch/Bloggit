@@ -44,8 +44,8 @@ const SingleComment = ({ comment }) => {
 
     const handleDelete = () => {
         dispatch(thunkDeleteComment(comment.id))
-        dispatch(actionClearComments())
-        dispatch(thunkGetAllComments(comment.post_id))
+        // dispatch(actionClearComments())
+        // dispatch(thunkGetAllComments(comment.post_id))
     }
     return (
         <>

@@ -172,7 +172,7 @@ body {
 .new-post-modal {
     position: fixed;
     width: 540px;
-    height: 300px;
+    height: auto;
     left: 30%;
     top: 30%;
     /* border: 1px solid grey; */

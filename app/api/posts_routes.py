@@ -71,12 +71,19 @@ def update_post(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if post is not None:
         if form.validate_on_submit():
+            print("TITLE----->", form.data['title'])
             if form.data['title']:
                 post.title = form.data['title']
+            if not form.data['title']:
+                post.title = ''
             if form.data['content']:
                 post.content = form.data['content']
+            if not form.data['content']:
+                post.content = ''
             if form.data['quote_source']:
                 post.quote_source = form.data['quote_source']
+            if not form.data['quote_source']:
+                post.quote_source = ''
             db.session.commit()
             return post.to_dict()
 

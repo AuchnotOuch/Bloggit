@@ -14,7 +14,6 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
     const [content, setContent] = useState(post.content)
     const [source, setSource] = useState(post.quote_source)
     const [errors, setErrors] = useState([])
-
     useEffect(() => {
         const errors = []
         if (!title && !content) {
@@ -27,7 +26,7 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
             errors.push("Post content must be 10000 or less characters")
         }
         if (post.type === 'quote' && !source && !content) {
-            errors.push("You must provide a quote and a source")
+            errors.push("You must provide at least a quote")
         }
         if (post.type === 'quote' && source.length > 100) {
             errors.push("Source must be 100 or less characters")
@@ -86,20 +85,25 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
                         {post.type === 'quote' &&
                             <div className='text-form-container'>
                                 <form className="text-form">
-                                    <input
-                                        type="text"
-                                        value={content}
-                                        onChange={e => setContent(e.target.value)}
-                                        placeholder="Quote"
-                                        id="content-input"
-                                    />
-                                    <input
-                                        type="text"
-                                        value={source}
-                                        onChange={e => setSource(e.target.value)}
-                                        placeholder="Source"
-                                        id="title-input"
-                                    />
+                                    <div>
+                                        <textarea
+                                            type="text"
+                                            value={content}
+                                            onChange={e => setContent(e.target.value)}
+                                            placeholder='"Quote"'
+                                            id="quote-input"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label>-</label>
+                                        <input
+                                            type="text"
+                                            value={source}
+                                            onChange={e => setSource(e.target.value)}
+                                            placeholder="Source"
+                                            id="quote-source-input"
+                                        />
+                                    </div>
                                     <ul>
                                         {errors.map(error => <li id="error" key={error}>{error}</li>)}
                                     </ul>
@@ -109,7 +113,7 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
                         {post.type === 'photo' &&
                             <div className='text-form-container'>
                                 <form className="text-form">
-                                    <input
+                                    <textarea
                                         type="text"
                                         value={content}
                                         onChange={e => setContent(e.target.value)}
