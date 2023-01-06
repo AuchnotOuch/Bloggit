@@ -172,7 +172,7 @@ body {
 .new-post-modal {
     position: fixed;
     width: 540px;
-    height: 290px;
+    height: 300px;
     left: 30%;
     top: 30%;
     /* border: 1px solid grey; */
@@ -314,6 +314,22 @@ nav {
     height: 50px;
     width: 400px;
     resize: none;
+}
+
+#quote-input {
+    background: none;
+    border: none;
+    height: 50px;
+    max-width: 400px;
+    width: auto;
+    resize: none;
+    font-size: xx-large;
+}
+
+#quote-source-input {
+    background: none;
+    border: none;
+    font-size: medium;
 }
 
 .post-footer {

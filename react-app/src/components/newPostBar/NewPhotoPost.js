@@ -18,6 +18,17 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
     useEffect(() => {
         const errors = []
         const picTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg']
+        const validUrl = (str) => {
+            try {
+                const url = new URL(str)
+                if (url.protocol === 'http:' || url.protocol === 'https:') {
+                    return true
+                }
+            }
+            catch (e) {
+                return false
+            }
+        }
 
         if (!imageUrl) {
             errors.push("You must provide an image url")
@@ -25,6 +36,10 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
 
         if (!picTypes.includes(imageUrl.split(".").pop())) {
             errors.push("Please provide a jpg, jpeg, png, gif, or svg")
+        }
+
+        if (!validUrl(imageUrl)) {
+            errors.push('Please provide a valid image link')
         }
         setErrors(errors)
     }, [imageUrl])
