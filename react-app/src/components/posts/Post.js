@@ -11,13 +11,13 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
 
     const mountCommentSection = (postId) => {
         if (mountComments) {
-            dispatch(actionClearComments())
-            dispatch(thunkGetAllComments(postId))
+            // dispatch(actionClearComments())
+            // dispatch(thunkGetAllComments(postId))
             setMountComments(!mountComments)
             return
         }
-        dispatch(actionClearComments())
-        dispatch(thunkGetAllComments(postId))
+        // dispatch(actionClearComments())
+        // dispatch(thunkGetAllComments(postId))
         setMountComments(!mountComments)
     }
 
@@ -28,7 +28,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
             </div>
             <div className='post-header'>
                 <div className="header-section">
-                    <Link to={`/${post.owner.username}/post/${post.id}`}>{post.owner.username}</Link>
+                    <Link to={`/${post.owner.username}/post/${post.id}`} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal}>{post.owner.username}</Link>
                 </div>
                 <div className='post-content'>
                     {post.type === 'text' &&
@@ -65,7 +65,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
                         </>
                     }
                     <div className="post-footer">
-                        <div>Notes</div>
+                        <div>{post.comments.length} notes</div>
                         <div className="comment-like-container">
                             <button id="comment-button" onClick={(e) => { e.stopPropagation(); mountCommentSection(post.id) }}><i class="fa-regular fa-comment"></i></button>
                         </div>
