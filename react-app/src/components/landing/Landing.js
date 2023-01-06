@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, matchPath, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { thunkGetAllPosts } from '../../store/posts';
+import Post from "../posts/Post";
+
 import './Landing.css'
+import Welcome from './Welcome';
 
 const Landing = () => {
     const posts = useSelector(state => state.posts)
-    let postsArr = []
-
-    Object.values(posts).forEach(post => postsArr.push(post))
-    const featuredPost = postsArr[Math.floor(Math.random() * (postsArr.length))]
-
     const user = useSelector(state => state.session.user)
+    const [mountWelcome, setMountWelcome] = useState(true)
 
     const history = useHistory()
     const dispatch = useDispatch()
+
+    let postsArr = []
+    Object.values(posts).forEach(post => postsArr.push(post))
+    const featuredPost = postsArr[Math.floor(Math.random() * (postsArr.length))]
 
     useEffect(() => {
         dispatch(thunkGetAllPosts())
@@ -30,7 +33,9 @@ const Landing = () => {
 
     return (
         <>
-            <div className='container'></div>
+            {mountWelcome &&
+                <Welcome mountWelcome={mountWelcome} setMountWelcome={setMountWelcome} />
+            }
             <div className='feed-container'>
                 <div className='feed'>
                     {Object.values(posts).reverse().map(post => (
