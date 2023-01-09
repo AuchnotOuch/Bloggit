@@ -57,7 +57,9 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
                 </div>
                 <div className='new-post-header'>
                     <div className="new-header-section">
-                        <Link to={`/${user.username}`}>{user.username}</Link>
+                        <div className="owner-header-edit">{post.owner.username}</div>
+
+                        {/* <Link to={`/${user.username}`}>{user.username}</Link> */}
                     </div>
                     {post.type === 'text' &&
                         <div className='text-form-container'>
