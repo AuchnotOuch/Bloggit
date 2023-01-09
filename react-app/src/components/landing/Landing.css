@@ -683,6 +683,7 @@ nav {
 
 }
 
+
 #featured-title {
     font-size: xx-large;
     margin-bottom: 20px;
@@ -707,4 +708,78 @@ nav {
 
 #featured-post-owner {
     width: 50px;
+}
+
+.about-link-section {
+    margin-top: 20px;
+}
+
+#about-button {
+    background-color: rgb(133, 40, 214);
+    ;
+    border-radius: 3px;
+    color: white;
+    font-size: 2em;
+    padding: 3px;
+}
+
+.about-container {
+    background-color: rgb(133, 40, 214);
+    display: flex;
+    flex-direction: column;
+    /* position: fixed; */
+    width: 75%;
+    height: auto;
+    margin-left: 12%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.about-blogsta {
+    display: flex;
+    flex-direction: column;
+}
+
+#about-blogsta-header {
+    color: white;
+    text-decoration: underline;
+}
+
+#about-blogsta-text {
+    text-align: left;
+    font-size: large;
+    width: 500px;
+    color: lightgrey;
+}
+
+#coming-soon {
+    color: lightgrey;
+}
+
+#about-me-header {
+    color: white;
+    text-decoration: underline;
+}
+
+.about-me {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-me-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#about-me-info {
+    color: lightgray;
+    padding: 10px;
+    font-size: large;
+    /* text-align: center; */
+}
+
+.fa-github {
+    font-size: 5em;
+    color: black;
 }

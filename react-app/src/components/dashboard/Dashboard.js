@@ -96,6 +96,9 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
+                        <div className="about-link-section">
+                            <Link to={'/about'} id={'about-button'}>About</Link>
+                        </div>
                     </div>
                 </div>
             </div>
