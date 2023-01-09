@@ -45,7 +45,9 @@ const Landing = () => {
                             </div>
                             <div className='post-header'>
                                 <div className="header-section">
-                                    <Link to={`/${post.owner.username}/post/${post.id}`}>{post.owner.username}</Link>
+                                    <div className="owner-header">{post.owner.username}</div>
+
+                                    {/* <Link to={`/${post.owner.username}/post/${post.id}`}>{post.owner.username}</Link> */}
                                 </div>
                                 <div className='post-content'>
                                     {post.type === 'text' &&

@@ -5,7 +5,7 @@ import { thunkGetAllPosts, thunkUpdatePost } from "../../store/posts";
 import "../landing/Landing.css"
 
 
-const EditPost = ({ editId, mountEdit, setMountEdit }) => {
+const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
     const post = useSelector(state => state.posts[editId])
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
@@ -45,91 +45,90 @@ const EditPost = ({ editId, mountEdit, setMountEdit }) => {
         }
 
         setMountEdit(!mountEdit)
+        setBlur(!blur)
         dispatch(thunkUpdatePost(editedPost))
         // dispatch(thunkGetAllPosts())
     }
     return (
         <>
-            <div className="background-blur">
-                <div className="new-post-modal">
-                    <div className='feed-profile-photo' >
-                        <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+            <div className="new-post-modal">
+                <div className='feed-profile-photo' >
+                    <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                </div>
+                <div className='new-post-header'>
+                    <div className="new-header-section">
+                        <Link to={`/${user.username}`}>{user.username}</Link>
                     </div>
-                    <div className='new-post-header'>
-                        <div className="new-header-section">
-                            <Link to={`/${user.username}`}>{user.username}</Link>
+                    {post.type === 'text' &&
+                        <div className='text-form-container'>
+                            <form className="text-form">
+                                <input
+                                    type="text"
+                                    value={title}
+                                    onChange={e => setTitle(e.target.value)}
+                                    placeholder="Title"
+                                    id="title-input"
+                                />
+                                <textarea
+                                    type="text"
+                                    value={content}
+                                    onChange={e => setContent(e.target.value)}
+                                    placeholder="Insert text here..."
+                                    id="content-input"
+                                />
+                                <ul>
+                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                </ul>
+                            </form>
                         </div>
-                        {post.type === 'text' &&
-                            <div className='text-form-container'>
-                                <form className="text-form">
+                    }
+                    {post.type === 'quote' &&
+                        <div className='text-form-container'>
+                            <form className="text-form">
+                                <div>
+                                    <textarea
+                                        type="text"
+                                        value={content}
+                                        onChange={e => setContent(e.target.value)}
+                                        placeholder='"Quote"'
+                                        id="quote-input"
+                                    />
+                                </div>
+                                <div>
+                                    <label>-</label>
                                     <input
                                         type="text"
-                                        value={title}
-                                        onChange={e => setTitle(e.target.value)}
-                                        placeholder="Title"
-                                        id="title-input"
+                                        value={source}
+                                        onChange={e => setSource(e.target.value)}
+                                        placeholder="Source"
+                                        id="quote-source-input"
                                     />
-                                    <textarea
-                                        type="text"
-                                        value={content}
-                                        onChange={e => setContent(e.target.value)}
-                                        placeholder="Insert text here..."
-                                        id="content-input"
-                                    />
-                                    <ul>
-                                        {errors.map(error => <li id="error" key={error}>{error}</li>)}
-                                    </ul>
-                                </form>
-                            </div>
-                        }
-                        {post.type === 'quote' &&
-                            <div className='text-form-container'>
-                                <form className="text-form">
-                                    <div>
-                                        <textarea
-                                            type="text"
-                                            value={content}
-                                            onChange={e => setContent(e.target.value)}
-                                            placeholder='"Quote"'
-                                            id="quote-input"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label>-</label>
-                                        <input
-                                            type="text"
-                                            value={source}
-                                            onChange={e => setSource(e.target.value)}
-                                            placeholder="Source"
-                                            id="quote-source-input"
-                                        />
-                                    </div>
-                                    <ul>
-                                        {errors.map(error => <li id="error" key={error}>{error}</li>)}
-                                    </ul>
-                                </form>
-                            </div>
-                        }
-                        {post.type === 'photo' &&
-                            <div className='text-form-container'>
-                                <form className="text-form">
-                                    <textarea
-                                        type="text"
-                                        value={content}
-                                        onChange={e => setContent(e.target.value)}
-                                        placeholder="Have more to say about this photo?"
-                                        id="content-input"
-                                    />
-                                    <ul>
-                                        {errors.map(error => <li id="error" key={error}>{error}</li>)}
-                                    </ul>
-                                </form>
-                            </div>
-                        }
-                        <div className="cancel-submit-container">
-                            <button id='cancel-text' onClick={() => setMountEdit(!mountEdit)}>Cancel</button>
-                            <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>Save</button>
+                                </div>
+                                <ul>
+                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                </ul>
+                            </form>
                         </div>
+                    }
+                    {post.type === 'photo' &&
+                        <div className='text-form-container'>
+                            <form className="text-form">
+                                <textarea
+                                    type="text"
+                                    value={content}
+                                    onChange={e => setContent(e.target.value)}
+                                    placeholder="Have more to say about this photo?"
+                                    id="content-input"
+                                />
+                                <ul>
+                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                </ul>
+                            </form>
+                        </div>
+                    }
+                    <div className="cancel-submit-container">
+                        <button id='cancel-text' onClick={() => { setBlur(!blur); setMountEdit(!mountEdit) }}>Cancel</button>
+                        <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>Save</button>
                     </div>
                 </div>
             </div>

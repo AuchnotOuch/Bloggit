@@ -14,21 +14,35 @@ body {
     align-items: center;
     position: fixed;
     left: 22%;
-    width: 800px;
-    height: 600px;
+    width: 50%;
+    height: auto;
     background-color: rgb(133, 40, 214);
     border-radius: 5px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .welcome-blogsta {
-    font-size: 7em;
+    font-size: 5em;
     font-weight: bolder;
     color: white;
 }
 
+.welcome-blogsta-login {
+    font-size: 5em;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.welcome-blogsta-signup {
+    font-size: 5em;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 20px;
+}
+
 .welcome-pitch {
-    font-size: large;
+    font-size: small;
     font-style: italic;
     display: flex;
     align-items: center;
@@ -48,6 +62,10 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.login-welcome {
+    margin-top: 20px;
 }
 
 #signup-welcome {
@@ -123,6 +141,10 @@ body {
     width: 540px;
     background-color: rgba(34, 34, 34, 255);
     border-radius: 3px;
+}
+
+.owner-header {
+    color: white;
 }
 
 .header-section {
@@ -230,7 +252,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.824);
-    z-index: 99;
+    z-index: 98;
 }
 
 .new-post-modal {
@@ -243,6 +265,7 @@ body {
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0);
     /* margin: 14vw; */
+    z-index: 99;
 }
 
 .text-form {
@@ -272,6 +295,7 @@ body {
     position: fixed;
     color: white;
     font-size: x-large;
+    z-index: 99;
     /* background-color: white; */
 }
 
@@ -516,7 +540,7 @@ nav {
 }
 
 #logout-button {
-    background-color: rgb(0, 166, 255);
+    background-color: rgb(118, 232, 249);
     border: none;
     border-radius: 3px;
     width: 100px;
@@ -554,9 +578,24 @@ nav {
     align-items: center;
     background-color: rgb(133, 40, 214);
     width: 600px;
-    height: 400px;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.signup-container {
+    position: fixed;
+    left: 29%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(133, 40, 214);
+    width: 600px;
+    height: auto;
     /* margin-left: 29%; */
     border-radius: 5px;
+    padding: 10px;
 }
 
 #email-input,
@@ -571,7 +610,7 @@ nav {
 
 #login-button {
     font-size: large;
-    background-color: aqua;
+    background-color: rgb(118, 232, 249);
     border: none;
     border-radius: 3px;
     /* margin-left: 35%; */
@@ -579,7 +618,7 @@ nav {
 
 #demo-button {
     font-size: large;
-    background-color: rgb(0, 255, 47);
+    background-color: greenyellow;
     border: none;
     border-radius: 3px;
     margin-left: 35%;

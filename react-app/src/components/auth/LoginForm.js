@@ -41,6 +41,7 @@ const LoginForm = () => {
 
   return (
     <div className='login-container'>
+      <div className="welcome-blogsta-login">Blogsta</div>
       <form onSubmit={onLogin}>
         <div>
           {/* <label htmlFor='email'>Email</label> */}

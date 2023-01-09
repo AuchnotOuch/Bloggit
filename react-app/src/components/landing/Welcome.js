@@ -19,6 +19,9 @@ const Welcome = ({ mountWelcome, setMountWelcome }) => {
                 <Link to='/sign-up' ><button id="signup-welcome">Let's do this.</button></Link>
                 <button onClick={() => setMountWelcome(!mountWelcome)} id="cancel-welcome">No thanks. I'll just look around.</button>
             </div>
+            <div className="login-welcome">
+                <Link to='/login'>Already a member? Login here.</Link>
+            </div>
         </div>
     )
 }
