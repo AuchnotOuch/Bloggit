@@ -12,9 +12,15 @@ def seed_post_images():
         url = "https://images.unsplash.com/photo-1506699311528-5be252edc26a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80",
         text = "<3"
     )
+    post_six = PostImage(
+        post_id = 6,
+        url = "https://media.giphy.com/media/QObPo575HQHlGMhbae/giphy.gif",
+        text = "cat attack!"
+    )
 
     db.session.add(post_three)
     db.session.add(post_five)
+    db.session.add(post_six)
     db.session.commit()
 
 

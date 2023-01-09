@@ -30,12 +30,17 @@ def seed_posts():
         type = "photo",
         content = "Had so much fun last night!"
     )
+    post_six = Post(
+        owner_id = 2,
+        type = "photo"
+    )
 
     db.session.add(post_one)
     db.session.add(post_two)
     db.session.add(post_three)
     db.session.add(post_four)
     db.session.add(post_five)
+    db.session.add(post_six)
 
     db.session.commit()
 

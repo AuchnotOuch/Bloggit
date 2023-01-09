@@ -5,7 +5,7 @@ from app.models import db, User, environment, SCHEMA
 def seed_users():
     demo = User(
         username='Demo',
-        profile_photo_url='https://cdn.pixabay.com/photo/2016/04/01/09/09/animal-1299179_1280.png',
+        profile_photo_url='https://media4.giphy.com/media/cJMlR1SsCSkUjVY3iK/giphy.gif',
         blog_title='Demolition Zone',
         description='Welcome to my blog. Remember to wear a hard hat!',
         email='demo@aa.io',
@@ -21,7 +21,7 @@ def seed_users():
         )
     bobbie = User(
         username='bobbie',
-        profile_photo_url='https://cdn.pixabay.com/photo/2013/07/12/19/22/cat-154641_1280.png',
+        profile_photo_url='https://media3.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
         blog_title="Bob's Blog",
         description='Serving up the dankest memes and the spiciest takes.',
         email='bobbie@aa.io',
