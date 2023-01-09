@@ -2,25 +2,19 @@ from app.models import db, PostImage, environment, SCHEMA
 
 
 def seed_post_images():
-    post_three_1 = PostImage(
+    post_three = PostImage(
         post_id = 3,
         url = "https://i.redd.it/6mkf2fwat6461.jpg",
         text = "Lmaooooooooo"
     )
-    post_three_2 = PostImage(
-        post_id = 3,
-        url = "https://i.redd.it/0gsv9rijxpn51.jpg",
-        text = "So true hahaha"
-    )
-    post_three_3 = PostImage(
-        post_id = 3,
-        url = "https://i.redd.it/6az7dr5fqsn31.jpg",
-        text = "You know exactly what this meme is about XD"
+    post_five = PostImage(
+        post_id = 5,
+        url = "https://images.unsplash.com/photo-1506699311528-5be252edc26a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80",
+        text = "<3"
     )
 
-    db.session.add(post_three_1)
-    db.session.add(post_three_2)
-    db.session.add(post_three_3)
+    db.session.add(post_three)
+    db.session.add(post_five)
     db.session.commit()
 
 

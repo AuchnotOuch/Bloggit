@@ -27,10 +27,28 @@ def seed_users():
         email='bobbie@aa.io',
         password='password'
         )
+    user1 = User(
+        username='auchie',
+        profile_photo_url='https://i.imgur.com/87xhBUe.jpg',
+        blog_title="Auchie's World",
+        description='hot takes and food',
+        email='auchie@aa.io',
+        password='password'
+        )
+    user2 = User(
+        username='~simone~',
+        profile_photo_url='https://i.pinimg.com/564x/9e/81/17/9e8117482494104e110f0ef7213d168f.jpg',
+        blog_title="livin laughin lovin",
+        description='anime and more',
+        email='x@aa.io',
+        password='password'
+        )
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(user1)
+    db.session.add(user2)
     db.session.commit()
 
 

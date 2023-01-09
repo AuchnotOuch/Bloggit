@@ -6,7 +6,7 @@ def seed_posts():
         owner_id = 1,
         type = "text",
         title = "First Post!",
-        content = "This is my first post on Blogsta!",
+        content = "Hello World!",
     )
     post_two = Post(
         owner_id = 2,
@@ -17,12 +17,26 @@ def seed_posts():
     post_three = Post(
         owner_id = 3,
         type = "photo",
-        content = "Some dank memes"
+        content = "A dank meme"
+    )
+    post_four = Post(
+        owner_id = 4,
+        type = "text",
+        title = "I need a vacation",
+        content = "I've been thinking that I need to get away for a bit. Any vacay spot recommendations?"
+    )
+    post_five = Post(
+        owner_id = 5,
+        type = "photo",
+        content = "Had so much fun last night!"
     )
 
     db.session.add(post_one)
     db.session.add(post_two)
     db.session.add(post_three)
+    db.session.add(post_four)
+    db.session.add(post_five)
+
     db.session.commit()
 
 
