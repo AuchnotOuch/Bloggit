@@ -7,7 +7,7 @@ import { actionClearComments, thunkGetAllComments } from "../../store/comments";
 
 const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     const [mountComments, setMountComments] = useState(false)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const mountCommentSection = (postId) => {
         if (mountComments) {
@@ -28,7 +28,8 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
             </div>
             <div className='post-header'>
                 <div className="header-section">
-                    <Link to={`/${post.owner.username}/post/${post.id}`} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal}>{post.owner.username}</Link>
+                    <div className="owner-header">{post.owner.username}</div>
+                    {/* <Link to={`/${post.owner.username}/post/${post.id}`} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal}>{post.owner.username}</Link> */}
                 </div>
                 <div className='post-content'>
                     {post.type === 'text' &&

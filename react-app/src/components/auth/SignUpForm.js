@@ -47,7 +47,7 @@ const SignUpForm = () => {
       errorArr.push("Passwords must match!")
     }
     setErrors(errorArr)
-  }, [profilePhoto, username, password, repeatPassword])
+  }, [profilePhoto, username, password, repeatPassword, email])
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -80,7 +80,9 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='login-container'>
+    <div className='signup-container'>
+      <div className="welcome-blogsta-signup">Blogsta</div>
+
       <form onSubmit={onSignUp}>
         <div>
           {/* {errors.map((error, ind) => (

@@ -8,6 +8,87 @@ body {
     flex-direction: row;
 }
 
+.welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 25%;
+    width: 50%;
+    height: auto;
+    background-color: rgb(133, 40, 214);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.welcome-blogsta {
+    font-size: 5em;
+    font-weight: bolder;
+    color: white;
+}
+
+.welcome-blogsta-login {
+    font-size: 5em;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.welcome-blogsta-signup {
+    font-size: 5em;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.welcome-pitch {
+    font-size: small;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 700px;
+}
+
+.welcome-question {
+    font-size: larger;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.welcome-buttons-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-welcome {
+    margin-top: 20px;
+}
+
+#signup-welcome {
+    background: none;
+    color: rgb(118, 232, 249);
+    height: 50px;
+    border: 2px solid rgb(118, 232, 249);
+    padding: 3px;
+    margin-bottom: 10px;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+#cancel-welcome {
+    background: none;
+    color: white;
+    height: 50px;
+    border: 2px solid grey;
+    padding: 3px;
+    font-size: larger;
+    font-weight: bolder;
+}
+
 .feed-container {
     display: flex;
     flex-direction: row;
@@ -62,6 +143,10 @@ body {
     border-radius: 3px;
 }
 
+.owner-header {
+    color: white;
+}
+
 .header-section {
     /* height: 20px; */
     padding: 15px;
@@ -79,6 +164,7 @@ body {
     /* border: solid; */
     border-radius: 3px;
     word-wrap: break-word;
+    padding-bottom: 10px;
 }
 
 .edit-delete-buttons {
@@ -166,7 +252,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.824);
-    z-index: 99;
+    z-index: 98;
 }
 
 .new-post-modal {
@@ -179,6 +265,7 @@ body {
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0);
     /* margin: 14vw; */
+    z-index: 99;
 }
 
 .text-form {
@@ -208,6 +295,7 @@ body {
     position: fixed;
     color: white;
     font-size: x-large;
+    z-index: 99;
     /* background-color: white; */
 }
 
@@ -452,7 +540,7 @@ nav {
 }
 
 #logout-button {
-    background-color: rgb(0, 166, 255);
+    background-color: rgb(118, 232, 249);
     border: none;
     border-radius: 3px;
     width: 100px;
@@ -490,9 +578,24 @@ nav {
     align-items: center;
     background-color: rgb(133, 40, 214);
     width: 600px;
-    height: 400px;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.signup-container {
+    position: fixed;
+    left: 29%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(133, 40, 214);
+    width: 600px;
+    height: auto;
     /* margin-left: 29%; */
     border-radius: 5px;
+    padding: 10px;
 }
 
 #email-input,
@@ -507,7 +610,7 @@ nav {
 
 #login-button {
     font-size: large;
-    background-color: aqua;
+    background-color: rgb(118, 232, 249);
     border: none;
     border-radius: 3px;
     /* margin-left: 35%; */
@@ -515,7 +618,7 @@ nav {
 
 #demo-button {
     font-size: large;
-    background-color: rgb(0, 255, 47);
+    background-color: greenyellow;
     border: none;
     border-radius: 3px;
     margin-left: 35%;
@@ -580,6 +683,7 @@ nav {
 
 }
 
+
 #featured-title {
     font-size: xx-large;
     margin-bottom: 20px;
@@ -604,4 +708,78 @@ nav {
 
 #featured-post-owner {
     width: 50px;
+}
+
+.about-link-section {
+    margin-top: 20px;
+}
+
+#about-button {
+    background-color: rgb(133, 40, 214);
+    ;
+    border-radius: 3px;
+    color: white;
+    font-size: 2em;
+    padding: 3px;
+}
+
+.about-container {
+    background-color: rgb(133, 40, 214);
+    display: flex;
+    flex-direction: column;
+    /* position: fixed; */
+    width: 75%;
+    height: auto;
+    margin-left: 12%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.about-blogsta {
+    display: flex;
+    flex-direction: column;
+}
+
+#about-blogsta-header {
+    color: white;
+    text-decoration: underline;
+}
+
+#about-blogsta-text {
+    text-align: left;
+    font-size: large;
+    width: 500px;
+    color: lightgrey;
+}
+
+#coming-soon {
+    color: lightgrey;
+}
+
+#about-me-header {
+    color: white;
+    text-decoration: underline;
+}
+
+.about-me {
+    display: flex;
+    flex-direction: column;
+}
+
+.about-me-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#about-me-info {
+    color: lightgray;
+    padding: 10px;
+    font-size: large;
+    /* text-align: center; */
+}
+
+.fa-github {
+    font-size: 5em;
+    color: black;
 }

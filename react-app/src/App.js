@@ -9,9 +9,10 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import Landing from './components/landing/Landing'
 import Dashboard from './components/dashboard/Dashboard'
+import SinglePost from './components/posts/singlePost';
+import About from './components/About';
 import { authenticate } from './store/session';
 import '../src/components/landing/Landing.css'
-import SinglePost from './components/posts/singlePost';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
+        </Route>
+        <Route path='/about' exact={true}>
+          <About />
         </Route>
         <Route path='/:userName/post/:postId' exact={true}>
           <SinglePost />

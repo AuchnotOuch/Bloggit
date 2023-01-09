@@ -79,7 +79,9 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                 </div>
                 <div className='new-post-header'>
                     <div className="new-header-section">
-                        <Link to={`/${user.username}`}>{user.username}</Link>
+                        <div>{user.username}</div>
+
+                        {/* <Link to={`/${user.username}`}>{user.username}</Link> */}
                     </div>
                     <div className="text-form-container">
                         <form className="text-form">

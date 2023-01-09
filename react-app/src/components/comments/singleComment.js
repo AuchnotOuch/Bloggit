@@ -5,9 +5,7 @@ import "../landing/Landing.css"
 
 const SingleComment = ({ comment }) => {
     const user = useSelector(state => state.session.user)
-    const comments = useSelector(state => state.comments)
 
-    // const post = useSelector(state => state.posts[postId])
 
     const [editMode, setEditMode] = useState(false)
     const [editComment, setEditComment] = useState(comment.comment)
@@ -44,8 +42,6 @@ const SingleComment = ({ comment }) => {
 
     const handleDelete = () => {
         dispatch(thunkDeleteComment(comment.id))
-        // dispatch(actionClearComments())
-        // dispatch(thunkGetAllComments(comment.post_id))
     }
     return (
         <>
