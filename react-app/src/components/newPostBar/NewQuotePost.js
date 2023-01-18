@@ -24,6 +24,9 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
         if (content.length > 10000) {
             errors.push("Post content must be 10000 or less characters")
         }
+        if (source && !content) {
+            errors.push("A quote is required")
+        }
         setErrors(errors)
     }, [source, content])
 
