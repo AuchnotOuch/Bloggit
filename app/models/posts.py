@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
+from .likes import likes_table
 
 
 class Post(db.Model):
@@ -23,6 +24,7 @@ class Post(db.Model):
     owner = relationship("User", back_populates="posts")
     photos = relationship("PostImage", back_populates="post", cascade="all, delete")
     comments = relationship("Comment", back_populates="post", cascade="all, delete")
+    user_like = relationship('User', secondary=likes_table, back_populates='post_like', cascade="all, delete")
 
     def to_dict(self):
         return {
