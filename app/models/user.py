@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 
     posts = relationship("Post", back_populates="owner")
     comments = relationship("Comment", back_populates='user')
-    post_like = relationship('User', secondary=likes_table, back_populates='user_like', cascade="all, delete")
+    post_like = relationship('Post', secondary=likes_table, back_populates='user_like', cascade="all, delete")
 
 
     @property
