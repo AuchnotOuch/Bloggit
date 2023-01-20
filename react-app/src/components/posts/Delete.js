@@ -19,7 +19,7 @@ const DeletePost = ({ blur, setBlur, deleteId, mountDelete, setMountDelete }) =>
                 <p>Are you sure you want to delete this post?</p>
                 <div className="delete-message">
                     <span><button id='cancel-delete' onClick={() => { setBlur(!blur); setMountDelete(!mountDelete) }}>No</button></span>
-                    <span><button id='submit-delete' onClick={handleDelete}>Yes</button></span>
+                    <span><button id='submit-delete' onClick={() => handleDelete()}>Yes</button></span>
                 </div>
             </div>
         </>
