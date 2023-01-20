@@ -9,7 +9,6 @@ const NewComment = ({ postId }) => {
 
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([])
-    console.log(errors)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -24,7 +23,6 @@ const NewComment = ({ postId }) => {
     }, [comment])
 
     const handleSubmit = (e) => {
-        console.log('yes it it hitting submit')
         e.preventDefault()
 
         const newComment = {

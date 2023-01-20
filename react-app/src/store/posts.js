@@ -45,7 +45,6 @@ export const thunkGetAllPosts = () => async (dispatch) => {
 
 export const thunkCreatePost = (post) => async (dispatch) => {
     const { owner_id, type, title, content, quote_source, link_url, image_url, image_caption } = post
-    console.log(post)
     const response = await fetch("/api/posts/new", {
         method: "POST",
         headers: {
@@ -71,7 +70,6 @@ export const thunkCreatePost = (post) => async (dispatch) => {
 
 export const thunkUpdatePost = (post) => async (dispatch) => {
     const { postId, title, content, quote_source } = post
-    console.log(post)
     const response = await fetch(`/api/posts/${postId}`, {
         method: 'PUT',
         headers: {
@@ -83,7 +81,6 @@ export const thunkUpdatePost = (post) => async (dispatch) => {
             quote_source
         })
     })
-    console.log(response)
     if (response.ok) {
         const data = await response.json()
         dispatch(actionUpdatePost(data))
@@ -118,9 +115,7 @@ export default function postsReducer(state = {}, action) {
             return newState
         case DELETE_POST:
             newState = { ...state }
-            console.log(newState)
             delete newState[action.payload]
-            console.log(newState)
             return newState
         default:
             return state
