@@ -58,7 +58,7 @@ def add_post():
         return new_post.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@posts_routes.route('<int:id>', methods=['PUT'])
+@posts_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_post(id):
     """

@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.orm import relationship
+from .likes import likes_table
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -19,6 +20,8 @@ class User(db.Model, UserMixin):
 
     posts = relationship("Post", back_populates="owner")
     comments = relationship("Comment", back_populates='user')
+    post_like = relationship('Post', secondary=likes_table, back_populates='user_like', cascade="all, delete")
+
 
     @property
     def password(self):
