@@ -63,6 +63,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
             setLiked(true)
         }
     }, [user])
+
     return (
         <div className='post-container'>
             <div className='feed-profile-photo' >
@@ -110,7 +111,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
                     <div className="post-footer">
                         <div>{post.comments.length + likes} notes</div>
                         <div className="comment-like-container">
-                            <button id="comment-button" onClick={() => liked ? removeLike() : addLike()}>{liked ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}</button>
+                            <button id="comment-button" onClick={() => liked ? removeLike() : addLike()}>{liked ? <i id="liked-heart" className="fa-solid fa-heart"></i> : <i id="unliked-heart" className="fa-regular fa-heart"></i>}</button>
                             <button id="comment-button" onClick={(e) => { e.stopPropagation(); mountCommentSection(post.id) }}><i className="fa-regular fa-comment"></i></button>
                         </div>
                     </div>

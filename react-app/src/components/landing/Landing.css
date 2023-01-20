@@ -437,6 +437,7 @@ nav {
     display: flex;
     flex-direction: row;
     margin-bottom: 15px;
+    padding: 10px;
 }
 
 .comment-text {
@@ -447,9 +448,22 @@ nav {
     max-width: 300px;
 }
 
-.fa-comment,
-.fa-heart {
+.fa-comment {
     color: white;
+    font-size: large;
+}
+
+.comment-container {
+    margin-left: 10px;
+}
+
+#unliked-heart {
+    color: white;
+    font-size: large;
+}
+
+#liked-heart {
+    color: red;
     font-size: large;
 }
 
