@@ -447,7 +447,8 @@ nav {
     max-width: 300px;
 }
 
-.fa-comment {
+.fa-comment,
+.fa-heart {
     color: white;
     font-size: large;
 }

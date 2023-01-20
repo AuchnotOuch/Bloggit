@@ -7,20 +7,62 @@ import { actionClearComments, thunkGetAllComments } from "../../store/comments";
 
 const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     const [mountComments, setMountComments] = useState(false)
-    // const dispatch = useDispatch()
+    const [liked, setLiked] = useState(false)
+    const [likes, setLikes] = useState(null)
 
-    const mountCommentSection = (postId) => {
+    const mountCommentSection = () => {
         if (mountComments) {
-            // dispatch(actionClearComments())
-            // dispatch(thunkGetAllComments(postId))
             setMountComments(!mountComments)
             return
         }
-        // dispatch(actionClearComments())
-        // dispatch(thunkGetAllComments(postId))
         setMountComments(!mountComments)
     }
 
+    const addLike = async () => {
+        const response = await fetch(`/api/likes/post/${post.id}`, {
+            method: 'POST'
+        })
+        const data = await response.json()
+        if (data.Error) {
+            return
+        }
+        setLiked(true)
+    }
+
+    const removeLike = async () => {
+        const response = await fetch(`/api/likes/post/${post.id}`, {
+            method: 'DELETE'
+        })
+        const data = await response.json()
+        if (data.Error) {
+            return
+        }
+        setLiked(false)
+    }
+
+    useEffect(async () => {
+        const response = await fetch(`/api/likes/post/${post.id}`, {
+            method: 'GET'
+        })
+        const data = await response.json()
+        if (data.Error) {
+            return
+        }
+        setLikes(data.Likes)
+    }, [liked])
+
+    useEffect(async () => {
+        const response = await fetch(`/api/likes/post/${post.id}`, {
+            method: 'GET'
+        })
+        const data = await response.json()
+        if (data.Error) {
+            return
+        }
+        if (data.User_liked) {
+            setLiked(true)
+        }
+    }, [user])
     return (
         <div className='post-container'>
             <div className='feed-profile-photo' >
@@ -66,9 +108,10 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
                         </>
                     }
                     <div className="post-footer">
-                        <div>{post.comments.length} notes</div>
+                        <div>{post.comments.length + likes} notes</div>
                         <div className="comment-like-container">
-                            <button id="comment-button" onClick={(e) => { e.stopPropagation(); mountCommentSection(post.id) }}><i class="fa-regular fa-comment"></i></button>
+                            <button id="comment-button" onClick={() => liked ? removeLike() : addLike()}>{liked ? <i className="fa-solid fa-heart"></i> : <i className="fa-regular fa-heart"></i>}</button>
+                            <button id="comment-button" onClick={(e) => { e.stopPropagation(); mountCommentSection(post.id) }}><i className="fa-regular fa-comment"></i></button>
                         </div>
                     </div>
                     {mountComments &&

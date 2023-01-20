@@ -13,9 +13,15 @@ def likes_count(id):
     post.
     '''
     post = Post.query.get(id)
+    user = current_user
 
     if post is not None:
         likes = post.user_like
+        if user is not None:
+            for like in likes:
+                print(like)
+                if like == user:
+                    return {'Likes': len(likes), 'User_liked': True}
         return {'Likes': len(likes)}
 
     return {"Error": f'Post {id} not found'}, 404
@@ -50,4 +56,4 @@ def remove_like(id):
         db.session.commit()
         return {"message": 'like removed!'}
 
-        return {"Error": f'Could not remove like for post {id}'}, 404
+    return {"Error": f'Could not remove like for post {id}'}, 404
