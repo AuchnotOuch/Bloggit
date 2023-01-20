@@ -64,8 +64,6 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
             content
         }
 
-        console.log(newPhotoPost)
-
         setMountPhoto(!mountPhoto)
         dispatch(thunkCreatePost(newPhotoPost))
         dispatch(actionClearComments())

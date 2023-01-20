@@ -81,7 +81,6 @@ export const thunkUpdateComment = (editedComment) => async (dispatch) => {
             comment
         })
     })
-    console.log(response)
     if (response.ok) {
         const data = await response.json()
         dispatch(actionUpdateComment(data))
@@ -116,9 +115,7 @@ export default function commentsReducer(state = {}, action) {
             return newState
         case DELETE_COMMENT:
             newState = { ...state }
-            console.log(newState)
             delete newState[action.payload]
-            console.log(newState)
             return newState
         case CLEAR_STATE:
             newState = {}
