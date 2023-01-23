@@ -13,4 +13,4 @@ class Follower(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     follower_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    follower_index = Index('follower_index', 'user_id', 'follower_id')
+    follower_index = Index('follower_index', 'user_id', 'follower_id', unique=True)
