@@ -1,9 +1,30 @@
 .dropdown-container {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
     color: white;
-    background-color: rgba(128, 128, 128, 0.506);
+    background-color: rgba(34, 34, 34, 255);
+    position: fixed;
+    top: 58px;
+    right: 5px;
 }
 
 .user-menu-container {
     display: flex;
     flex-direction: column;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: large;
+    padding: 5px;
+    background-color: rgba(128, 128, 128, 0.506);
+}
+
+#logout-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: large;
 }

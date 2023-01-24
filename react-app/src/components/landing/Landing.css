@@ -555,14 +555,6 @@ nav {
     cursor: pointer;
 }
 
-#logout-button {
-    background-color: rgb(118, 232, 249);
-    border: none;
-    border-radius: 3px;
-    width: 100px;
-    font-size: x-large;
-}
-
 .cancel-submit-container {
     display: flex;
     justify-content: space-between;
