@@ -799,3 +799,19 @@ nav {
     font-size: 5em;
     color: black;
 }
+
+.fa-user {
+    color: rgba(128, 128, 128, 0.506);
+    font-size: xx-large;
+    position: sticky;
+}
+
+.fa-user:active {
+    color: white;
+}
+
+.user-menu {
+    background: none;
+    border: none;
+    margin-bottom: 10%;
+}
