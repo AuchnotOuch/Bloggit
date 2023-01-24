@@ -6,8 +6,24 @@ const DropDown = () => {
     return (
         <div className="dropdown-container">
             <div className="menu-header">
-                <p style={{ textDecoration: 'underline' }}>Account</p>
+                <p>Account</p>
                 <LogoutButton />
+            </div>
+            <div className="menu-items-container">
+                <div className="menu-likes-container">
+                    <div className="menu-likes">
+                        <i className="fa-solid fa-heart menu-like-icon"></i>
+                        <p>Likes</p>
+                    </div>
+                    <div>1</div>
+                </div>
+                <div className="menu-following-container">
+                    <div className="menu-following">
+                        <i className="fa-solid fa-user-group menu-following-icon"></i>
+                        <p>Following</p>
+                    </div>
+                    <div>1</div>
+                </div>
             </div>
         </div>
     )
