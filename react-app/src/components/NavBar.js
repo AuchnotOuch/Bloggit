@@ -1,8 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
 import DropDown from './DropDown';
 import './landing/Landing.css'
 import './styles/NavBar.css'
@@ -13,6 +12,13 @@ const NavBar = () => {
   const [mountMenu, setMountMenu] = useState(false)
 
   const toggleMenu = () => setMountMenu(!mountMenu)
+
+  useEffect(() => {
+    if (mountMenu) {
+      window.addEventListener('click', toggleMenu)
+      return () => window.removeEventListener('click', toggleMenu)
+    }
+  }, [mountMenu])
 
   return (
     <nav>
@@ -46,7 +52,7 @@ const NavBar = () => {
         <>
           <div className='user-menu-container'>
             <div>
-              <button onClick={toggleMenu} className='user-menu'><i className="fa-solid fa-user"></i></button>
+              <button onClick={toggleMenu} className='user-menu'><i className={mountMenu ? "fa-solid fa-user menu-active" : "fa-solid fa-user"}></i></button>
             </div>
             {mountMenu &&
               <DropDown />

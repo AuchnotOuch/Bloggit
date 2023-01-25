@@ -106,3 +106,7 @@
 .menu-following-icon {
     font-size: large;
 }
+
+.menu-active {
+    color: white;
+}
