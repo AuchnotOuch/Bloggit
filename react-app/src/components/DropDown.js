@@ -24,6 +24,13 @@ const DropDown = () => {
                     </div>
                     <div>1</div>
                 </div>
+                <div className="menu-followers-container">
+                    <div className="menu-followers">
+                        <i className="fa-solid fa-user-plus menu-followers-icon"></i>
+                        <p>Followers</p>
+                    </div>
+                    <div>1</div>
+                </div>
             </div>
         </div>
     )

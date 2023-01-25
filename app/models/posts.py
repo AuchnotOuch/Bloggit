@@ -39,5 +39,6 @@ class Post(db.Model):
             'updated_at': self.updated_at,
             'owner': self.owner.to_dict(),
             'photos': [photo.to_dict() for photo in self.photos],
-            'comments': [comment.to_dict() for comment in self.comments]
+            'comments': [comment.to_dict() for comment in self.comments],
+            'likes': len(self.user_like)
         }

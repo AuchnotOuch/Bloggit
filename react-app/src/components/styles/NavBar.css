@@ -52,6 +52,7 @@
 }
 
 .menu-likes>p,
+.menu-followers>p,
 .menu-following>p {
     margin-left: 5px;
 }
@@ -70,7 +71,22 @@
     align-items: center;
 }
 
+.menu-followers-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-followers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .menu-like-icon,
+.menu-followers-icon,
 .menu-following-icon {
     font-size: large;
 }

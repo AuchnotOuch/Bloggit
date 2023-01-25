@@ -42,4 +42,6 @@ class User(db.Model, UserMixin):
             'profile_photo_url': self.profile_photo_url,
             'blog_title': self.blog_title,
             'description': self.description,
+            'posts': len(self.posts),
+            'likes': len(self.post_like)
         }
