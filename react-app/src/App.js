@@ -13,6 +13,7 @@ import SinglePost from './components/posts/singlePost';
 import About from './components/About';
 import { authenticate } from './store/session';
 import '../src/components/landing/Landing.css'
+import Followers from './components/Follows/Followers';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,6 +45,11 @@ function App() {
         </Route>
         <Route path='/:userName/post/:postId' exact={true}>
           <SinglePost />
+        </Route>
+        <Route path='/users/:userId/followers' exact={true}>
+          <Followers />
+        </Route>
+        <Route path='/users/:userId/following' exact={true}>
         </Route>
         <ProtectedRoute path='/dashboard' exact={true}>
           <Dashboard />
