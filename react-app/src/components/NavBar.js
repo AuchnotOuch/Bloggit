@@ -24,7 +24,7 @@ const NavBar = () => {
     <nav>
       <div>
         <NavLink to='/' exact={true} activeClassName='active'>
-          <i class="fa-solid fa-b"></i>
+          <i className="fa-solid fa-b"></i>
         </NavLink>
       </div>
       {!user &&
