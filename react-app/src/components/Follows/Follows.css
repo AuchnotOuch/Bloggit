@@ -1,4 +1,4 @@
-.container {
+.main-followers-container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -7,7 +7,6 @@
 
 .followers {
     width: 624px;
-    border: 1px solid lightgrey;
     color: white;
     /* padding: 5px; */
 }
@@ -15,12 +14,14 @@
 .followers-container {
     background-color: rgba(128, 128, 128, 0.506);
     padding: 5px;
+    border-radius: 5px;
 }
 
 .follower {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 .follower-img-name-container {
@@ -28,16 +29,24 @@
     flex-direction: row;
 }
 
-#follower-img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-}
-
-.side-section {
+.follower-side-section {
     display: flex;
     flex-direction: column;
     border: 1px solid gray;
     width: 320px;
     color: white;
+}
+
+#follower-img {
+    width: 37px;
+    height: 37px;
+    margin-right: 10px;
+}
+
+#follow,
+#unfollow {
+    background: none;
+    border: none;
+    font-size: large;
+    color: rgb(0, 184, 255);
 }

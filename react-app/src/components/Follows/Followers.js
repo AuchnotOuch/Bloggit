@@ -24,7 +24,7 @@ const Followers = () => {
     if (!followers) return null
     return (
         <>
-            <div className="container">
+            <div className="main-followers-container">
                 <div className="followers">
                     <h2>{Object.keys(followers).length} Followers</h2>
                     <div className="followers-container">
@@ -33,7 +33,7 @@ const Followers = () => {
                         )}
                     </div>
                 </div>
-                <div className="side-section">side section</div>
+                <div className="follower-side-section">side section</div>
             </div>
         </>
     )

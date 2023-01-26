@@ -8,20 +8,41 @@ const FollowerCard = ({ follower }) => {
     const [following, setFollowing] = useState(false)
 
     useEffect(() => {
-        async function getFollowings() {
-            const response = await fetch(`/api/users/${user.id}/following`, {
-                method: 'GET'
-            })
-            const data = await response.json()
-            Object.values(data).forEach(follow => {
-                if (follow.follower_id === follower.id) {
-                    return setFollowing(true)
-                }
-            })
+        if (user) {
+            async function getFollowings() {
+                const response = await fetch(`/api/users/${user.id}/following`, {
+                    method: 'GET'
+                })
+                const data = await response.json()
+                Object.values(data).forEach(follow => {
+                    if (follow.follower_id === follower.id) {
+                        return setFollowing(true)
+                    }
+                })
+            }
+            getFollowings()
         }
-        getFollowings()
     }, [user])
 
+    const follow = async () => {
+        const response = await fetch(`/api/users/${follower.id}/follow`, {
+            method: 'POST'
+        })
+        if (response.ok) {
+            setFollowing(true)
+        }
+    }
+
+    const unfollow = async () => {
+        const response = await fetch(`/api/users/${follower.id}/unfollow`, {
+            method: 'DELETE'
+        })
+        if (response.ok) {
+            setFollowing(false)
+        }
+    }
+
+    if (!user) return null
     return (
         <div className="follower">
             <div className="follower-img-name-container">
@@ -30,8 +51,8 @@ const FollowerCard = ({ follower }) => {
             </div>
             <div>
                 {following
-                    ? "Unfollow"
-                    : "Follow"
+                    ? <button id="unfollow" onClick={unfollow}>Unfollow</button>
+                    : <button id="follow" onClick={follow}>Follow</button>
                 }
             </div>
         </div>
