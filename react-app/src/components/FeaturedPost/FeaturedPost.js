@@ -4,17 +4,26 @@ import { thunkGetAllPosts } from "../../store/posts";
 
 
 const FeaturedPost = () => {
-    const posts = useSelector(state => state.posts)
+    const [posts, setPosts] = useState([])
     const [featuredPost, setFeaturedPost] = useState({})
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(thunkGetAllPosts())
-    }, [dispatch])
+        const getPosts = async () => {
+            const response = await fetch('/api/posts', {
+                method: 'GET'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setPosts(data.Posts)
+            }
+        }
+        getPosts()
+    }, [])
 
     useEffect(() => {
         let postsArr = []
-        Object.values(posts).forEach(post => postsArr.push(post))
+        posts.forEach(post => postsArr.push(post))
         const randomPost = postsArr[Math.floor(Math.random() * (postsArr.length))]
         setFeaturedPost(randomPost)
     }, [posts])
