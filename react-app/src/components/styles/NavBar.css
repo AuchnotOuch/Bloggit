@@ -78,6 +78,7 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
+    color: white;
 }
 
 .menu-followers {
@@ -104,7 +105,8 @@
 .menu-posts-icon,
 .menu-followers-icon,
 .menu-following-icon {
-    font-size: large;
+    font-size: x-large;
+    color: white;
 }
 
 .menu-active {

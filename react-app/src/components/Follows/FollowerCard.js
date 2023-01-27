@@ -8,20 +8,20 @@ const FollowerCard = ({ follower }) => {
     const [following, setFollowing] = useState(false)
 
     useEffect(() => {
-        if (user) {
-            async function getFollowings() {
-                const response = await fetch(`/api/users/${user.id}/following`, {
-                    method: 'GET'
-                })
-                const data = await response.json()
-                Object.values(data).forEach(follow => {
-                    if (follow.follower_id === follower.id) {
-                        return setFollowing(true)
-                    }
-                })
-            }
-            getFollowings()
+
+        async function getFollowings() {
+            const response = await fetch(`/api/users/${user.id}/following`, {
+                method: 'GET'
+            })
+            const data = await response.json()
+            Object.values(data).forEach(follow => {
+                if (follow.id === follower.id) {
+                    return setFollowing(true)
+                }
+            })
         }
+        getFollowings()
+
     }, [user])
 
     const follow = async () => {

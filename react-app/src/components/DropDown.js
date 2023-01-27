@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import './styles/NavBar.css'
 
@@ -55,13 +56,15 @@ const DropDown = () => {
                     </div>
                     <div>{following}</div>
                 </div>
-                <div className="menu-followers-container">
-                    <div className="menu-followers">
-                        <i className="fa-solid fa-user-plus menu-followers-icon"></i>
-                        <p>Followers</p>
+                <Link to={`/users/${user.id}/followers`}>
+                    <div className="menu-followers-container">
+                        <div className="menu-followers">
+                            <i className="fa-solid fa-user-plus menu-followers-icon"></i>
+                            <p>Followers</p>
+                        </div>
+                        <div>{followers}</div>
                     </div>
-                    <div>{followers}</div>
-                </div>
+                </Link>
             </div>
         </div>
     )
