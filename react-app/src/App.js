@@ -14,6 +14,7 @@ import About from './components/About';
 import { authenticate } from './store/session';
 import '../src/components/landing/Landing.css'
 import Followers from './components/Follows/Followers';
+import Followings from './components/Follows/Followings';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -50,6 +51,7 @@ function App() {
           <Followers />
         </Route>
         <Route path='/users/:userId/following' exact={true}>
+          <Followings />
         </Route>
         <ProtectedRoute path='/dashboard' exact={true}>
           <Dashboard />

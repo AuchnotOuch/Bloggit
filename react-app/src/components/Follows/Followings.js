@@ -6,30 +6,31 @@ import FollowerCard from "./FollowerCard";
 import './Follows.css'
 
 
-const Followers = () => {
+const Followings = () => {
     const user = useSelector(state => state.session.user)
     const { userId } = useParams()
-    const [followers, setFollowers] = useState({})
+    const [followings, setFollowings] = useState({})
 
     useEffect(() => {
-        async function getFollowers() {
-            const response = await fetch(`/api/users/${userId}/followers`, {
+        async function getFollowings() {
+            const response = await fetch(`/api/users/${userId}/following`, {
                 method: 'GET'
             })
             const data = await response.json()
-            setFollowers(data)
+            setFollowings(data)
         }
-        getFollowers()
+        getFollowings()
     }, [userId])
+
     if (!userId) return null
-    if (!followers) return null
+    if (!followings) return null
     return (
         <>
             <div className="main-followers-container">
                 <div className="followers">
-                    <h2>{Object.keys(followers).length} Followers</h2>
+                    <h2>You follow {Object.keys(followings).length} blogs</h2>
                     <div className="followers-container">
-                        {Object.values(followers).map(follower =>
+                        {Object.values(followings).map(follower =>
                             <FollowerCard follower={follower} key={follower.id} />
                         )}
                     </div>
@@ -46,4 +47,4 @@ const Followers = () => {
     )
 }
 
-export default Followers
+export default Followings

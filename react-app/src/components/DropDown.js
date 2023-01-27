@@ -49,13 +49,15 @@ const DropDown = () => {
                     </div>
                     <div>{user.likes}</div>
                 </div>
-                <div className="menu-following-container">
-                    <div className="menu-following">
-                        <i className="fa-solid fa-user-group menu-following-icon"></i>
-                        <p>Following</p>
+                <Link to={`/users/${user.id}/following`}>
+                    <div className="menu-following-container">
+                        <div className="menu-following">
+                            <i className="fa-solid fa-user-group menu-following-icon"></i>
+                            <p>Following</p>
+                        </div>
+                        <div>{following}</div>
                     </div>
-                    <div>{following}</div>
-                </div>
+                </Link>
                 <Link to={`/users/${user.id}/followers`}>
                     <div className="menu-followers-container">
                         <div className="menu-followers">
