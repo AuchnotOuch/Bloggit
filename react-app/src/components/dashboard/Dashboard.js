@@ -14,7 +14,7 @@ const Dashboard = () => {
     const posts = useSelector(state => state.posts)
     const user = useSelector(state => state.session.user)
 
-    const [mountProfile, setMountProfile] = useState(false)
+    const [mountProfile, setMountProfile] = useState(true)
     const [mountDelete, setMountDelete] = useState(false)
     const [mountEdit, setMountEdit] = useState(false)
     const [profileId, setProfileId] = useState(null)

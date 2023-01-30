@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { thunkGetAllPosts } from "../../store/posts";
+
 
 
 const FeaturedPost = () => {
     const [posts, setPosts] = useState([])
     const [featuredPost, setFeaturedPost] = useState({})
-    const dispatch = useDispatch()
 
     useEffect(() => {
         const getPosts = async () => {
