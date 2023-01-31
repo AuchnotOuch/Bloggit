@@ -1,35 +1,72 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { thunkGetAllPosts } from "../../store/posts";
+import Post from "../posts/Post";
 import './MainProfile.css'
 
 
-const MainProfile = ({ blur, setBlur, profileId, mountProfile, setMountProfile }) => {
-    const posts = useSelector(state => state.posts)
+const MainProfile = ({ blur, setBlur, profileId, mountProfile, setMountProfile, mountDeleteModal, mountEditModal }) => {
+    const [posts, setPosts] = useState([])
+    const [user, setUser] = useState({})
     const [userPosts, setUserPosts] = useState([])
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const getUser = async (userId) => {
+            const response = await fetch(`/api/users/${userId}`, {
+                method: 'GET'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setUser(data)
+            }
+        }
+
+        const getPosts = async () => {
+            const response = await fetch(`/api/posts`, {
+                method: 'GET'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                setPosts(data.Posts)
+            }
+        }
+
+        getUser(profileId)
+        getPosts(profileId)
+    }, [profileId])
 
     useEffect(() => {
         let postArr = []
-        Object.values(posts).forEach(post => {
+        posts.forEach(post => {
             if (post.owner_id === profileId) {
                 postArr.push(post)
             }
-            return setUserPosts(postArr)
+            // console.log(userPosts)
         })
-    }, [posts])
+        setUserPosts(postArr)
+    }, [posts, profileId])
+
     console.log(userPosts)
+    if (!user || !userPosts) return null
     return (
         <div className="profile-container">
             <div className="main">
                 main
                 <div className="profile-header">header
-                    <div className="profile-pic">profile pic</div>
-                    <div className="blog-name">blog name</div>
-                    <div className="blog-description">blog description</div>
+                    <div className="profile-pic"><img src={user.profile_photo_url} /></div>
+                    <h3 className="blog-name">{user.blog_title}</h3>
+                    <div className="blog-description">{user.description}</div>
                     <div className="follow-unfollow">follow/unfollow section</div>
                 </div>
                 <div className="profile-posts">
                     <h2>Posts</h2>
-
+                    <div className="posts-container">
+                        {posts.map(post => (
+                            <Post post={post} user={user} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
+                        ))}
+                    </div>
                 </div>
             </div>
             <div className="side">side</div>

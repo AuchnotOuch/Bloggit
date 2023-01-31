@@ -57,7 +57,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
         }
         getFollowings()
 
-    }, [user])
+    }, [user, post.owner_id])
 
     const follow = async () => {
         const response = await fetch(`/api/users/${post.owner_id}/follow`, {
@@ -78,29 +78,35 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     }
 
 
-    useEffect(async () => {
-        const response = await fetch(`/api/likes/post/${post.id}`, {
-            method: 'GET'
-        })
-        const data = await response.json()
-        if (data.Error) {
-            return
+    useEffect(() => {
+        const getLikes = async () => {
+            const response = await fetch(`/api/likes/post/${post.id}`, {
+                method: 'GET'
+            })
+            const data = await response.json()
+            if (data.Error) {
+                return
+            }
+            setLikes(data.Likes)
         }
-        setLikes(data.Likes)
-    }, [liked])
+        getLikes()
+    }, [liked, post.id])
 
-    useEffect(async () => {
-        const response = await fetch(`/api/likes/post/${post.id}`, {
-            method: 'GET'
-        })
-        const data = await response.json()
-        if (data.Error) {
-            return
+    useEffect(() => {
+        const getLike = async () => {
+            const response = await fetch(`/api/likes/post/${post.id}`, {
+                method: 'GET'
+            })
+            const data = await response.json()
+            if (data.Error) {
+                return
+            }
+            if (data.User_liked) {
+                setLiked(true)
+            }
         }
-        if (data.User_liked) {
-            setLiked(true)
-        }
-    }, [user])
+        getLike()
+    }, [user, post.id])
 
     return (
         <div className='post-container'>
