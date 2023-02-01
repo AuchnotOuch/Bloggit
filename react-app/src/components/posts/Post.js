@@ -10,6 +10,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     const [liked, setLiked] = useState(false)
     const [likes, setLikes] = useState(null)
     const [following, setFollowing] = useState(false)
+    const currentUser = useSelector(state => state.session.user)
 
 
     const mountCommentSection = () => {
@@ -45,7 +46,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     useEffect(() => {
 
         async function getFollowings() {
-            const response = await fetch(`/api/users/${user.id}/following`, {
+            const response = await fetch(`/api/users/${currentUser.id}/following`, {
                 method: 'GET'
             })
             const data = await response.json()
@@ -116,7 +117,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
             <div className='post-header'>
                 <div className="header-section">
                     <div className="owner-header">{post.owner.username}</div>
-                    {post.owner_id !== user.id &&
+                    {post.owner_id !== currentUser.id &&
                         <div>
                             {following
                                 ? <button id="unfollow" onClick={unfollow}>Unfollow</button>
@@ -153,7 +154,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
                             <div className="photo-content">{post.content}</div>
                         </>
                     }
-                    {post.owner.id === user.id &&
+                    {post.owner.id === currentUser.id &&
                         <>
                             <div className="edit-delete-buttons">
                                 <button onClick={() => mountEditModal(post.id)}><i className="fa-regular fa-pen-to-square"></i></button>
