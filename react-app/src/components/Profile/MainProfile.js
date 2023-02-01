@@ -11,8 +11,6 @@ const MainProfile = () => {
     const [user, setUser] = useState({})
     const [userPosts, setUserPosts] = useState([])
 
-    const dispatch = useDispatch()
-
     useEffect(() => {
         const getUser = async (userId) => {
             const response = await fetch(`/api/users/${userId}`, {
@@ -39,14 +37,20 @@ const MainProfile = () => {
     }, [userId])
 
     useEffect(() => {
-        let postArr = []
-        posts.forEach(post => {
-            if (post.owner_id === userId) {
-                postArr.push(post)
-            }
-            // console.log(userPosts)
-        })
-        setUserPosts(postArr)
+        const getUserPosts = () => {
+            let postArr = []
+            posts.map(post => {
+                if (post.owner_id === parseInt(userId)) {
+                    postArr.push(post)
+                }
+                // console.log(userPosts)
+            })
+            setUserPosts(postArr)
+            console.log(postArr)
+
+        }
+        console.log(userPosts)
+        getUserPosts()
     }, [posts, userId])
 
     console.log(userPosts)
@@ -65,7 +69,7 @@ const MainProfile = () => {
                     <div className="profile-posts">
                         <h2>Posts</h2>
                         <div className="posts-container">
-                            {posts.map(post => (
+                            {userPosts.map(post => (
                                 <Post post={post} user={user} />
                             ))}
                         </div>
