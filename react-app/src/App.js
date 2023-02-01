@@ -15,6 +15,7 @@ import { authenticate } from './store/session';
 import '../src/components/landing/Landing.css'
 import Followers from './components/Follows/Followers';
 import Followings from './components/Follows/Followings';
+import MainProfile from './components/Profile/MainProfile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,9 +60,9 @@ function App() {
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
+        <Route path='/users/:userId' exact={true} >
+          <MainProfile />
+        </Route>
         <Route path='/' exact={true} >
           <Landing />
         </Route>

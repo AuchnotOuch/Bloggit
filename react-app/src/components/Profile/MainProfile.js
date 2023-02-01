@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { thunkGetAllPosts } from "../../store/posts";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import Post from "../posts/Post";
 import './MainProfile.css'
 
 
-const MainProfile = ({ blur, setBlur, profileId, mountProfile, setMountProfile, mountDeleteModal, mountEditModal }) => {
+const MainProfile = () => {
+    const { userId } = useParams()
     const [posts, setPosts] = useState([])
     const [user, setUser] = useState({})
     const [userPosts, setUserPosts] = useState([])
@@ -33,20 +34,20 @@ const MainProfile = ({ blur, setBlur, profileId, mountProfile, setMountProfile, 
             }
         }
 
-        getUser(profileId)
-        getPosts(profileId)
-    }, [profileId])
+        getUser(userId)
+        getPosts(userId)
+    }, [userId])
 
     useEffect(() => {
         let postArr = []
         posts.forEach(post => {
-            if (post.owner_id === profileId) {
+            if (post.owner_id === userId) {
                 postArr.push(post)
             }
             // console.log(userPosts)
         })
         setUserPosts(postArr)
-    }, [posts, profileId])
+    }, [posts, userId])
 
     console.log(userPosts)
     if (!user || !userPosts) return null
@@ -64,7 +65,7 @@ const MainProfile = ({ blur, setBlur, profileId, mountProfile, setMountProfile, 
                     <h2>Posts</h2>
                     <div className="posts-container">
                         {posts.map(post => (
-                            <Post post={post} user={user} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
+                            <Post post={post} user={user} />
                         ))}
                     </div>
                 </div>
