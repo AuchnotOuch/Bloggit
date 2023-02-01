@@ -52,25 +52,27 @@ const MainProfile = () => {
     console.log(userPosts)
     if (!user || !userPosts) return null
     return (
-        <div className="profile-container">
-            <div className="main">
-                main
-                <div className="profile-header">header
-                    <div className="profile-pic"><img src={user.profile_photo_url} /></div>
-                    <h3 className="blog-name">{user.blog_title}</h3>
-                    <div className="blog-description">{user.description}</div>
-                    <div className="follow-unfollow">follow/unfollow section</div>
-                </div>
-                <div className="profile-posts">
-                    <h2>Posts</h2>
-                    <div className="posts-container">
-                        {posts.map(post => (
-                            <Post post={post} user={user} />
-                        ))}
+        <div className="container">
+            <div className="profile-container">
+                <div className="main">
+                    main
+                    <div className="profile-header">header
+                        <div className="profile-pic"><img src={user.profile_photo_url} /></div>
+                        <h3 className="blog-name">{user.blog_title}</h3>
+                        <div className="blog-description">{user.description}</div>
+                        <div className="follow-unfollow">follow/unfollow section</div>
+                    </div>
+                    <div className="profile-posts">
+                        <h2>Posts</h2>
+                        <div className="posts-container">
+                            {posts.map(post => (
+                                <Post post={post} user={user} />
+                            ))}
+                        </div>
                     </div>
                 </div>
+                <div className="side">side</div>
             </div>
-            <div className="side">side</div>
         </div>
     )
 

@@ -1,12 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
 .profile-container {
-    width: 985px;
+    width: 1000px;
     height: auto;
-    background-color: white;
-    position: fixed;
+    background-color: rgba(128, 128, 128, 0.506);
     display: flex;
     justify-content: space-between;
-    top: 0px;
-
 }
 
 .main {
@@ -48,7 +50,7 @@
 
 .posts-container {
     width: 100%;
-    height: 1005;
+    height: 100%;
     overflow: scroll;
 }
 
