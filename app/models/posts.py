@@ -12,7 +12,7 @@ class Post(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    owner_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')))
     type = db.Column(db.String(50), nullable=False)
     title = db.Column(db.String(500))
     content = db.Column(db.String(10000))
@@ -24,7 +24,7 @@ class Post(db.Model):
     owner = relationship("User", back_populates="posts")
     photos = relationship("PostImage", back_populates="post", cascade="all, delete")
     comments = relationship("Comment", back_populates="post", cascade="all, delete")
-    user_like = relationship('User', secondary=likes_table, back_populates='post_like', cascade="all, delete")
+    user_like = relationship('User', secondary=likes_table, back_populates='post_like')
 
     def to_dict(self):
         return {
@@ -39,5 +39,6 @@ class Post(db.Model):
             'updated_at': self.updated_at,
             'owner': self.owner.to_dict(),
             'photos': [photo.to_dict() for photo in self.photos],
-            'comments': [comment.to_dict() for comment in self.comments]
+            'comments': [comment.to_dict() for comment in self.comments],
+            'likes': len(self.user_like)
         }

@@ -13,6 +13,9 @@ import SinglePost from './components/posts/singlePost';
 import About from './components/About';
 import { authenticate } from './store/session';
 import '../src/components/landing/Landing.css'
+import Followers from './components/Follows/Followers';
+import Followings from './components/Follows/Followings';
+import MainProfile from './components/Profile/MainProfile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,15 +48,21 @@ function App() {
         <Route path='/:userName/post/:postId' exact={true}>
           <SinglePost />
         </Route>
+        <Route path='/users/:userId/followers' exact={true}>
+          <Followers />
+        </Route>
+        <Route path='/users/:userId/following' exact={true}>
+          <Followings />
+        </Route>
         <ProtectedRoute path='/dashboard' exact={true}>
           <Dashboard />
         </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute>
+        <Route path='/users/:userId' exact={true} >
+          <MainProfile />
+        </Route>
         <Route path='/' exact={true} >
           <Landing />
         </Route>

@@ -1,0 +1,116 @@
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    color: white;
+    background-color: rgba(34, 34, 34, 255);
+    position: fixed;
+    top: 58px;
+    right: 5px;
+}
+
+.user-menu-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    font-size: large;
+    padding: 5px;
+    background-color: rgba(128, 128, 128, 0.506);
+}
+
+#logout-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: large;
+}
+
+.menu-items-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.menu-likes-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-likes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-likes>p,
+.menu-followers>p,
+.menu-posts>p,
+.menu-following>p {
+    margin-left: 5px;
+}
+
+.menu-following-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.menu-following {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-followers-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.menu-followers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-posts-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.menu-posts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-like-icon,
+.menu-posts-icon,
+.menu-followers-icon,
+.menu-following-icon {
+    font-size: x-large;
+    color: white;
+}
+
+.menu-active {
+    color: white;
+}

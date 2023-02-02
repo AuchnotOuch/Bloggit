@@ -1,18 +1,30 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import DropDown from './DropDown';
 import './landing/Landing.css'
+import './styles/NavBar.css'
+
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
+  const [mountMenu, setMountMenu] = useState(false)
+
+  const toggleMenu = () => setMountMenu(!mountMenu)
+
+  useEffect(() => {
+    if (mountMenu) {
+      window.addEventListener('click', toggleMenu)
+      return () => window.removeEventListener('click', toggleMenu)
+    }
+  }, [mountMenu])
 
   return (
     <nav>
       <div>
         <NavLink to='/' exact={true} activeClassName='active'>
-          <i class="fa-solid fa-b"></i>
+          <i className="fa-solid fa-b"></i>
         </NavLink>
       </div>
       {!user &&
@@ -37,9 +49,17 @@ const NavBar = () => {
         </>
       }
       {user &&
-        <div>
-          <LogoutButton />
-        </div>
+        <>
+          <div className='user-menu-container'>
+            <div>
+              <button onClick={toggleMenu} className='user-menu'><i className={mountMenu ? "fa-solid fa-user menu-active" : "fa-solid fa-user"}></i></button>
+            </div>
+            {mountMenu &&
+              <DropDown />
+            }
+          </div>
+        </>
+
       }
 
     </nav>
