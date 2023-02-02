@@ -5,10 +5,11 @@
 
 .profile-container {
     width: 1000px;
-    height: auto;
-    background-color: white;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.536);
     display: flex;
     justify-content: space-between;
+    color: white;
 }
 
 .main {
@@ -61,9 +62,9 @@ h2 {
 
 #profile-unfollow,
 #profile-follow {
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 20px;
-    color: black;
+    color: white;
     margin-top: 10px;
     background: none;
     font-size: larger;

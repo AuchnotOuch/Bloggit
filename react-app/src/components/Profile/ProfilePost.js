@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import Comments from "../comments/comments";
-import { actionClearComments, thunkGetAllComments } from "../../store/comments";
 
 
-const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
+const ProfilePost = ({ post, user, mountDeleteModal, mountEditModal }) => {
     const [mountComments, setMountComments] = useState(false)
     const [liked, setLiked] = useState(false)
     const [likes, setLikes] = useState(null)
     const [following, setFollowing] = useState(false)
-
 
 
     const mountCommentSection = () => {
@@ -108,7 +104,7 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
         }
         getLike()
     }, [user, post.id])
-
+    if (!post) return null
     return (
         <div className='post-container'>
             <div className='feed-profile-photo' >
@@ -182,4 +178,4 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     )
 }
 
-export default Post
+export default ProfilePost

@@ -7,6 +7,7 @@ import "../landing/Landing.css"
 
 const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
     const post = useSelector(state => state.posts[editId])
+    console.log(post)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
@@ -14,6 +15,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
     const [content, setContent] = useState(post.content)
     const [source, setSource] = useState(post.quote_source)
     const [errors, setErrors] = useState([])
+
     useEffect(() => {
         const errors = []
         if (!title && !content) {
@@ -49,6 +51,8 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
         dispatch(thunkUpdatePost(editedPost))
         // dispatch(thunkGetAllPosts())
     }
+
+    if (!post || !editId) return null
     return (
         <>
             <div className="new-post-modal">
