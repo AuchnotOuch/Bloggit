@@ -35,20 +35,22 @@ const DropDown = () => {
                 <LogoutButton />
             </div>
             <div className="menu-items-container">
-                <div className="menu-posts-container">
-                    <div className="menu-posts">
-                        <i className="fa-solid fa-file-pen menu-posts-icon"></i>
-                        <p>Posts</p>
+                <Link to={`/users/${user.id}`}>
+                    <div className="menu-posts-container">
+                        <div className="menu-posts">
+                            <i className="fa-solid fa-file-pen menu-posts-icon"></i>
+                            <p>Posts</p>
+                        </div>
+                        <div>{user.posts}</div>
                     </div>
-                    <div>{user.posts}</div>
-                </div>
-                <div className="menu-likes-container">
+                </Link>
+                {/* <div className="menu-likes-container">
                     <div className="menu-likes">
                         <i className="fa-solid fa-heart menu-like-icon"></i>
                         <p>Likes</p>
                     </div>
                     <div>{user.likes}</div>
-                </div>
+                </div> */}
                 <Link to={`/users/${user.id}/following`}>
                     <div className="menu-following-container">
                         <div className="menu-following">

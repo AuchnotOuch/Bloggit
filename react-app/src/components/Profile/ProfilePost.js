@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Comments from "../comments/comments";
+import './MainProfile.css'
 
 
 const ProfilePost = ({ post, user, mountDeleteModal, mountEditModal }) => {
@@ -106,10 +107,7 @@ const ProfilePost = ({ post, user, mountDeleteModal, mountEditModal }) => {
     }, [user, post.id])
     if (!post) return null
     return (
-        <div className='post-container'>
-            <div className='feed-profile-photo' >
-                <img src={`${post.owner.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
-            </div>
+        <div className='post-container profile-post-container'>
             <div className='post-header'>
                 <div className="header-section">
                     <div className="owner-header">{post.owner.username}</div>

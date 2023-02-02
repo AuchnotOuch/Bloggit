@@ -111,12 +111,16 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
 
     return (
         <div className='post-container'>
-            <div className='feed-profile-photo' >
-                <img src={`${post.owner.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
-            </div>
+            <Link to={`/users/${post.owner_id}`}>
+                <div className='feed-profile-photo' >
+                    <img src={`${post.owner.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                </div>
+            </Link>
             <div className='post-header'>
                 <div className="header-section">
-                    <div className="owner-header">{post.owner.username}</div>
+                    <Link to={`/users/${post.owner_id}`}>
+                        <div className="owner-header">{post.owner.username}</div>
+                    </Link>
                     {post.owner_id !== user.id &&
                         <div>
                             {following

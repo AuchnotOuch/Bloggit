@@ -11,8 +11,8 @@ import './MainProfile.css'
 
 const MainProfile = () => {
     const { userId } = useParams()
-
-    const [posts, setPosts] = useState([])
+    const posts = useSelector(state => state.posts)
+    // const [posts, setPosts] = useState([])
     const [user, setUser] = useState({})
     const [userPosts, setUserPosts] = useState([])
     const [following, setFollowing] = useState(false)
@@ -36,36 +36,34 @@ const MainProfile = () => {
             }
         }
 
-        const getPosts = async () => {
-            const response = await fetch(`/api/posts`, {
-                method: 'GET'
-            })
-            if (response.ok) {
-                const data = await response.json()
-                setPosts(data.Posts)
-            }
-        }
+        // const getPosts = async () => {
+        //     const response = await fetch(`/api/posts`, {
+        //         method: 'GET'
+        //     })
+        //     if (response.ok) {
+        //         const data = await response.json()
+        //         setPosts(data.Posts)
+        //     }
+        // }
 
         getUser(userId)
-        getPosts(userId)
+        // getPosts(userId)
     }, [userId, mountEdit, mountDelete])
 
     useEffect(() => {
         const getUserPosts = () => {
             let postArr = []
-            posts.forEach(post => {
+            Object.values(posts).forEach(post => {
                 if (post.owner_id === parseInt(userId)) {
                     postArr.push(post)
                 }
-                // console.log(userPosts)
             })
             setUserPosts(postArr)
             console.log(postArr)
 
         }
-        console.log(userPosts)
         getUserPosts()
-    }, [posts, userId])
+    }, [posts, userId, mountEdit, mountDelete])
 
     useEffect(() => {
 
@@ -116,7 +114,7 @@ const MainProfile = () => {
         setMountEdit(!mountEdit)
     }
 
-    useEffect(() => dispatch(thunkGetAllPosts()))
+    useEffect(() => dispatch(thunkGetAllPosts()), [dispatch])
 
     if (!user || !userPosts) return null
     return (
