@@ -8,6 +8,7 @@ const DeletePost = ({ blur, setBlur, deleteId, mountDelete, setMountDelete }) =>
     const dispatch = useDispatch()
 
     const handleDelete = () => {
+        console.log(deleteId)
         dispatch(thunkDeletePost(deleteId))
         setMountDelete(!mountDelete)
         setBlur(!blur)

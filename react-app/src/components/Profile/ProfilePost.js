@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import Comments from "../comments/comments";
-import { actionClearComments, thunkGetAllComments } from "../../store/comments";
+import './MainProfile.css'
 
 
-const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
+const ProfilePost = ({ post, user, mountDeleteModal, mountEditModal }) => {
     const [mountComments, setMountComments] = useState(false)
     const [liked, setLiked] = useState(false)
     const [likes, setLikes] = useState(null)
     const [following, setFollowing] = useState(false)
-
 
 
     const mountCommentSection = () => {
@@ -108,19 +105,12 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
         }
         getLike()
     }, [user, post.id])
-
+    if (!post) return null
     return (
-        <div className='post-container'>
-            <Link to={`/users/${post.owner_id}`}>
-                <div className='feed-profile-photo' >
-                    <img src={`${post.owner.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
-                </div>
-            </Link>
+        <div className='post-container profile-post-container'>
             <div className='post-header'>
                 <div className="header-section">
-                    <Link to={`/users/${post.owner_id}`}>
-                        <div className="owner-header">{post.owner.username}</div>
-                    </Link>
+                    <div className="owner-header">{post.owner.username}</div>
                     {post.owner_id !== user.id &&
                         <div>
                             {following
@@ -186,4 +176,4 @@ const Post = ({ post, user, mountDeleteModal, mountEditModal }) => {
     )
 }
 
-export default Post
+export default ProfilePost

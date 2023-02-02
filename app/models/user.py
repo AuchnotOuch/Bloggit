@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
 
     posts = relationship("Post", back_populates="owner")
     comments = relationship("Comment", back_populates='user')
-    post_like = relationship('Post', secondary=likes_table, back_populates='user_like', cascade="all, delete")
+    post_like = relationship('Post', secondary=likes_table, back_populates='user_like')
 
 
     @property
@@ -42,4 +42,6 @@ class User(db.Model, UserMixin):
             'profile_photo_url': self.profile_photo_url,
             'blog_title': self.blog_title,
             'description': self.description,
+            'posts': len(self.posts),
+            'likes': len(self.post_like)
         }

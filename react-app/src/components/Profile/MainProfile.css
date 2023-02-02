@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-container {
+    width: 1000px;
+    height: 100vh;
+    background-color: rgba(128, 128, 128, 0.536);
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 640px;
+    height: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    overflow-y: scroll;
+    background-color: white
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    /* margin-bottom: px; */
+}
+
+.profile-pic {
+    border: 5px solid black;
+    border-radius: 5px;
+    width: 96px;
+    height: 96px;
+}
+
+.profile-pic>img {
+    width: 96px;
+    height: 96px;
+}
+
+.profile-posts {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+
+h2 {
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+#profile-unfollow,
+#profile-follow {
+    border: 1px solid white;
+    border-radius: 20px;
+    color: white;
+    margin-top: 10px;
+    background: none;
+    font-size: larger;
+}
+
+.profile-post-container {
+    width: 540px;
+    border: none;
+    margin: 0, 0, 20px, 0;
+    padding: 0;
+}

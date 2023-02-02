@@ -12,8 +12,8 @@ const Comments = ({ postId }) => {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(thunkGetAllComments(post.id))
-    }, [post])
+        dispatch(thunkGetAllComments(postId))
+    }, [postId])
     return (
         <>
             <NewComment postId={postId} />

@@ -4,4 +4,5 @@ from .posts import Post
 from .post_images import PostImage
 from .comments import Comment
 from .likes import likes_table
+from .followers import Follower
 from .db import environment, SCHEMA
