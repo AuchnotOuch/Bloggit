@@ -31,12 +31,12 @@ const NavBar = () => {
         <>
           <div className='login-signup'>
             <div className='login-button'>
-              <NavLink to='/login' exact={true} activeClassName='active'>
+              <NavLink to='/login' exact={true} id='login-button-nav' activeClassName='active'>
                 Login
               </NavLink>
             </div>
             <div className='signup-button'>
-              <NavLink to='/sign-up' exact={true} activeClassName='active'>
+              <NavLink to='/sign-up' exact={true} className='signup-button-nav' activeClassName='active'>
                 Sign Up
               </NavLink>
             </div>

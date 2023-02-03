@@ -68,12 +68,28 @@ body {
     margin-top: 20px;
 }
 
+.welcome-member-login {
+    color: black;
+}
+
+.welcome-member-login:visited {
+    color: black;
+}
+
+#cancel-welcome-x {
+    background: none;
+    border: none;
+    color: white;
+    font-size: large;
+    margin-left: 95%;
+}
+
 #signup-welcome {
     background: none;
     color: rgb(118, 232, 249);
     height: 50px;
     border: 2px solid rgb(118, 232, 249);
-    padding: 3px;
+    padding: 10px;
     margin-bottom: 10px;
     font-size: larger;
     font-weight: bolder;
@@ -84,7 +100,7 @@ body {
     color: white;
     height: 50px;
     border: 2px solid grey;
-    padding: 3px;
+    padding: 10px;
     font-size: larger;
     font-weight: bolder;
 }
@@ -317,18 +333,21 @@ nav {
 .login-signup {
     display: flex;
     justify-content: space-between;
+    font-weight: bolder;
 }
 
 .login-button {
     margin-right: 5px;
     padding: 5px;
     border: 1px solid grey;
+    border-radius: 5px;
     background-color: greenyellow;
 }
 
 .signup-button {
     padding: 5px;
     background-color: rgb(118, 232, 249);
+    border-radius: 5px;
 }
 
 .title {
@@ -616,6 +635,11 @@ nav {
     color: white;
     border-bottom: 1px solid lightgray;
     margin-bottom: 20px;
+}
+
+#email-input::placeholder,
+#password-input::placeholder {
+    color: white;
 }
 
 #login-button {
