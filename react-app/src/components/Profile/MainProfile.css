@@ -5,11 +5,11 @@
 
 .profile-container {
     width: 1000px;
-    height: 100vh;
+    height: auto;
     background-color: rgba(128, 128, 128, 0.536);
     display: flex;
     justify-content: space-between;
-    color: black;
+    color: white;
     border-radius: 5px;
     padding: 20px;
 }
@@ -23,7 +23,7 @@
     border-radius: 5px;
     padding: 5px;
     overflow-y: scroll;
-    background-color: white
+    /* background-color: white */
 }
 
 .profile-header {

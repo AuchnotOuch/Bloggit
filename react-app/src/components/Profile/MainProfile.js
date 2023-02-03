@@ -5,6 +5,8 @@ import { thunkGetAllPosts } from "../../store/posts";
 import ProfilePost from "./ProfilePost"
 import DeletePost from "../posts/Delete";
 import EditPost from "../posts/Edit";
+import FeaturedPost from "../FeaturedPost/FeaturedPost";
+import FeaturedUsers from "../FeaturedUsers/FeaturedUsers";
 import './MainProfile.css'
 
 
@@ -118,36 +120,51 @@ const MainProfile = () => {
 
     if (!user || !userPosts) return null
     return (
-        <div className="container">
-            <div className="profile-container">
-                <div className="main">
-                    {mountDelete && <DeletePost blur={blur} setBlur={setBlur} deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
-                    {mountEdit && <EditPost blur={blur} setBlur={setBlur} editId={editId} mountEdit={mountEdit} setMountEdit={setMountEdit} />}
-                    <div className="profile-header">
-                        <div className="profile-pic"><img src={user.profile_photo_url} /></div>
-                        <h3 className="blog-name">{user.blog_title}</h3>
-                        <div className="blog-description">{user.description}</div>
-                        {parseInt(userId) !== currentUser.id &&
-                            <div className="follow-unfollow">
-                                {following
-                                    ? <button id="profile-unfollow" onClick={unfollow}>Unfollow</button>
-                                    : <button id="profile-follow" onClick={follow}>Follow</button>
-                                }
+        <>
+            {blur &&
+                <div className="background-blur"></div>
+
+            }
+            <div className="container">
+                <div className="profile-container">
+                    <div className="main">
+                        {mountDelete && <DeletePost blur={blur} setBlur={setBlur} deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
+                        {mountEdit && <EditPost blur={blur} setBlur={setBlur} editId={editId} mountEdit={mountEdit} setMountEdit={setMountEdit} />}
+                        <div className="profile-header">
+                            <div className="profile-pic"><img src={user.profile_photo_url} /></div>
+                            <h3 className="blog-name">{user.blog_title}</h3>
+                            <div className="blog-description">{user.description}</div>
+                            {parseInt(userId) !== currentUser.id &&
+                                <div className="follow-unfollow">
+                                    {following
+                                        ? <button id="profile-unfollow" onClick={unfollow}>Unfollow</button>
+                                        : <button id="profile-follow" onClick={follow}>Follow</button>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div className="profile-posts">
+                            <h2>Posts</h2>
+                            <div className="posts-container">
+                                {userPosts.map(post => (
+                                    <ProfilePost post={post} user={currentUser} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
+                                ))}
                             </div>
-                        }
+                        </div>
                     </div>
-                    <div className="profile-posts">
-                        <h2>Posts</h2>
-                        <div className="posts-container">
-                            {userPosts.map(post => (
-                                <ProfilePost post={post} user={currentUser} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
-                            ))}
+                    <div className="side-section">
+                        <h2>Radar</h2>
+                        <div className="radar">
+                            <FeaturedPost />
+                        </div>
+                        <div className="featured-users">
+                            <h2>Check out these blogs!</h2>
+                            <FeaturedUsers />
                         </div>
                     </div>
                 </div>
-                <div className="side">side</div>
             </div>
-        </div>
+        </>
     )
 
 }
