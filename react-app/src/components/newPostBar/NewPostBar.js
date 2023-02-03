@@ -42,9 +42,11 @@ const NewPostBar = () => {
                 </>
             }
             <div className='container'>
-                <div className='feed-profile-photo' >
-                    <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
-                </div>
+                <Link to={`/users/${user.id}`}>
+                    <div className='feed-profile-photo' >
+                        <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                    </div>
+                </Link>
                 <div className='new-post-options'>
                     <div className='new-post-option-button'>
                         <button id='new-text-button' onClick={() => mountTextModal()}><i className="fa-solid fa-font"></i></button>

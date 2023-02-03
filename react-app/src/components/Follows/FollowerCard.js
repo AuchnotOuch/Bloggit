@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import './Follows.css'
 
 
@@ -45,10 +46,12 @@ const FollowerCard = ({ follower }) => {
     if (!user) return null
     return (
         <div className="follower">
-            <div className="follower-img-name-container">
-                <img id='follower-img' src={follower.profile_photo_url}></img>
-                <div>{follower.username}</div>
-            </div>
+            <Link to={`/users/${follower.id}`}>
+                <div className="follower-img-name-container">
+                    <img id='follower-img' src={follower.profile_photo_url}></img>
+                    <div>{follower.username}</div>
+                </div>
+            </Link>
             <div>
                 {following
                     ? <button id="unfollow" onClick={unfollow}>Unfollow</button>

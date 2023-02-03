@@ -5,6 +5,8 @@ import { thunkGetAllPosts } from "../../store/posts";
 import ProfilePost from "./ProfilePost"
 import DeletePost from "../posts/Delete";
 import EditPost from "../posts/Edit";
+import FeaturedPost from "../FeaturedPost/FeaturedPost";
+import FeaturedUsers from "../FeaturedUsers/FeaturedUsers";
 import './MainProfile.css'
 
 
@@ -150,7 +152,16 @@ const MainProfile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="side">side</div>
+                    <div className="side-section">
+                        <h2>Radar</h2>
+                        <div className="radar">
+                            <FeaturedPost />
+                        </div>
+                        <div className="featured-users">
+                            <h2>Check out these blogs!</h2>
+                            <FeaturedUsers />
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
