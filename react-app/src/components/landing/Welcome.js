@@ -5,6 +5,7 @@ import './Landing.css'
 const Welcome = ({ mountWelcome, setMountWelcome }) => {
     return (
         <div className='welcome'>
+            <button onClick={() => setMountWelcome(!mountWelcome)} id="cancel-welcome-x"><i className="fa-solid fa-xmark"></i></button>
             <h1>Welcome to</h1>
             <div className="welcome-blogsta">Blogsta</div>
             <div className="welcome-pitch">
@@ -20,7 +21,7 @@ const Welcome = ({ mountWelcome, setMountWelcome }) => {
                 <button onClick={() => setMountWelcome(!mountWelcome)} id="cancel-welcome">No thanks. I'll just look around.</button>
             </div>
             <div className="login-welcome">
-                <Link to='/login'>Already a member? Login here.</Link>
+                <Link id='welcome-member-login' to='/login'>Already a member? Login here.</Link>
             </div>
         </div>
     )

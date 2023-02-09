@@ -10,7 +10,7 @@ import FeaturedUsers from "../FeaturedUsers/FeaturedUsers";
 import './MainProfile.css'
 
 
-
+// TODO: If profile is current user, add edit profile functionality
 const MainProfile = () => {
     const { userId } = useParams()
     const posts = useSelector(state => state.posts)
