@@ -10,9 +10,8 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [profilePhoto, setProfilePhoto] = useState('')
-  const [blogTitle, setBlogTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [showErrors, setShowErrors] = useState(false)
+  // const [blogTitle, setBlogTitle] = useState('')
+  // const [description, setDescription] = useState('')
   const [submit, setSubmit] = useState(false)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();

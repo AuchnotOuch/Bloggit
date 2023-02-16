@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
-import { thunkGetAllPosts, thunkUpdatePost } from "../../store/posts";
+import { thunkUpdatePost } from "../../store/posts";
 import "../landing/Landing.css"
 
 
 const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
     const post = useSelector(state => state.posts[editId])
-    console.log(post)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
@@ -35,7 +33,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
             errors.push("Source must be 100 or less characters")
         }
         setErrors(errors)
-    }, [title, content, source])
+    }, [title, content, source, post.type])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -59,7 +57,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
         <>
             <div className="new-post-modal">
                 <div className='feed-profile-photo' >
-                    <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                    <img alt='profile pic' src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                 </div>
                 <div className='new-post-header'>
                     <div className="new-header-section">

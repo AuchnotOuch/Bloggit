@@ -61,7 +61,6 @@ const MainProfile = () => {
                 }
             })
             setUserPosts(postArr)
-            console.log(postArr)
 
         }
         getUserPosts()
@@ -81,8 +80,6 @@ const MainProfile = () => {
             })
         }
         getFollowings()
-        console.log(following)
-
     }, [currentUser, userId])
 
     const follow = async () => {
@@ -111,7 +108,6 @@ const MainProfile = () => {
 
     const mountEditModal = (postId) => {
         setBlur(!blur)
-        console.log(postId)
         setEditId(postId)
         setMountEdit(!mountEdit)
     }
@@ -131,7 +127,7 @@ const MainProfile = () => {
                         {mountDelete && <DeletePost blur={blur} setBlur={setBlur} deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
                         {mountEdit && <EditPost blur={blur} setBlur={setBlur} editId={editId} mountEdit={mountEdit} setMountEdit={setMountEdit} />}
                         <div className="profile-header">
-                            <div className="profile-pic"><img src={user.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} /></div>
+                            <div className="profile-pic"><img alt='profile pic' src={user.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} /></div>
                             <h3 className="blog-name">{user.blog_title}</h3>
                             <div className="blog-description">{user.description}</div>
                             {parseInt(userId) !== currentUser.id &&
@@ -147,7 +143,7 @@ const MainProfile = () => {
                             <h2>Posts</h2>
                             <div className="posts-container">
                                 {userPosts.map(post => (
-                                    <ProfilePost post={post} user={currentUser} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
+                                    <ProfilePost key={post.id} post={post} user={currentUser} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
                                 ))}
                             </div>
                         </div>

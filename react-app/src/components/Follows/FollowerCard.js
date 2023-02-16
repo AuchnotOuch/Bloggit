@@ -23,7 +23,7 @@ const FollowerCard = ({ follower }) => {
         }
         getFollowings()
 
-    }, [user])
+    }, [user, follower.id])
 
     const follow = async () => {
         const response = await fetch(`/api/users/${follower.id}/follow`, {
@@ -48,7 +48,7 @@ const FollowerCard = ({ follower }) => {
         <div className="follower">
             <Link to={`/users/${follower.id}`}>
                 <div className="follower-img-name-container">
-                    <img id='follower-img' src={follower.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                    <img alt="follower pic" id='follower-img' src={follower.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                     <div>{follower.username}</div>
                 </div>
             </Link>

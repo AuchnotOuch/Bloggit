@@ -30,7 +30,6 @@ def add_post():
     Creates a new post based on submitted form data
     """
     user = current_user
-    print('-------------->',request.form)
 
     if request.form and request.form['type'] == 'photo':
         if "image" not in request.files:
@@ -111,7 +110,6 @@ def update_post(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if post is not None:
         if form.validate_on_submit():
-            print("TITLE----->", form.data['title'])
             if form.data['title']:
                 post.title = form.data['title']
             if not form.data['title']:

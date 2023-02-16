@@ -30,7 +30,6 @@ def add_comment(id):
     form = NewCommentForm()
 
     user = current_user
-    print(user.id)
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():

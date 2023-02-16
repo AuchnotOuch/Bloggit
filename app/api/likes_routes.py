@@ -19,7 +19,6 @@ def likes_count(id):
         likes = post.user_like
         if user is not None:
             for like in likes:
-                print(like)
                 if like == user:
                     return {'Likes': len(likes), 'User_liked': True}
         return {'Likes': len(likes)}

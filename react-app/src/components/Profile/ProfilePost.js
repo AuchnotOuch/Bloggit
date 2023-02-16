@@ -138,9 +138,9 @@ const ProfilePost = ({ post, user, mountDeleteModal, mountEditModal }) => {
                     {post.type === 'photo' &&
                         <>
                             {Object.values(post.photos).map(photo => (
-                                <div className='image-post-container'>
+                                <div key={photo.id} className='image-post-container'>
                                     <div className='post-image'>
-                                        <img src={photo.url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                                        <img alt='post pic' src={photo.url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                                     </div>
                                     <div className='post-image-caption'>{photo.text}</div>
                                 </div>

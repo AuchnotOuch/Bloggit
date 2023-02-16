@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import FeaturedPost from "../FeaturedPost/FeaturedPost";
 import FollowerCard from "./FollowerCard";
@@ -7,7 +6,6 @@ import './Follows.css'
 
 
 const Followings = () => {
-    const user = useSelector(state => state.session.user)
     const { userId } = useParams()
     const [followings, setFollowings] = useState({})
 

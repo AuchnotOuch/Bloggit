@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { actionClearComments } from "../../store/comments";
-import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
+import { thunkGetAllPosts } from "../../store/posts";
 import "../landing/Landing.css"
 
 
@@ -18,30 +17,6 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
 
     useEffect(() => {
         const errors = []
-        // const picTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg']
-        // const validUrl = (str) => {
-        //     try {
-        //         const url = new URL(str)
-        //         if (url.protocol === 'http:' || url.protocol === 'https:') {
-        //             return true
-        //         }
-        //     }
-        //     catch (e) {
-        //         return false
-        //     }
-        // }
-
-        // if (!imageUrl) {
-        //     errors.push("You must provide an image url")
-        // }
-
-        // if (!picTypes.includes(imageUrl.split(".").pop())) {
-        //     errors.push("Please provide a jpg, jpeg, png, gif, or svg")
-        // }
-
-        // if (!validUrl(imageUrl)) {
-        //     errors.push('Please provide a valid image link')
-        // }
 
         if (caption && caption.length > 1000) {
             errors.push("Caption must be 1000 or less characters")
@@ -51,7 +26,6 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
             errors.push("Post content must be 10000 or less characters")
         }
         setErrors(errors)
-        console.log(errors)
     }, [caption, content])
 
 
@@ -87,13 +61,11 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
         <div className="background-blur">
             <div className="new-post-modal">
                 <div className='feed-profile-photo' >
-                    <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                    <img alt='profile pic' src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                 </div>
                 <div className='new-post-header'>
                     <div className="new-header-section">
                         <div>{user.username}</div>
-
-                        {/* <Link to={`/${user.username}`}>{user.username}</Link> */}
                     </div>
                     <div className="text-form-container">
                         <form onSubmit={handleSubmit} className="text-form">
