@@ -24,6 +24,8 @@ const NewPostBar = () => {
     useEffect(() => {
 
     }, [mountText, mountQuote, mountPhoto])
+
+    if (!user) return null
     return (
         <>
             {mountText &&

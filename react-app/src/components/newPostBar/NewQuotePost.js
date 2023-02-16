@@ -12,6 +12,7 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
     const [source, setSource] = useState('')
     const [content, setContent] = useState('')
     const [errors, setErrors] = useState([])
+    const [submit, setSubmit] = useState(false)
 
     useEffect(() => {
         const errors = []
@@ -32,7 +33,8 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setSubmit(true)
+        if (!!errors.length) return
         const newQuotePost = {
             owner_id: user.id,
             type: "quote",
@@ -78,13 +80,13 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
                                 />
                             </div>
                             <ul>
-                                {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                {submit && !!errors.length && errors.map(error => <li style={{ color: 'red' }} id="error" key={error}>{error}</li>)}
                             </ul>
                         </form>
                     </div>
                     <div className="cancel-submit-container">
                         <button id='cancel-text' onClick={() => setMountQuote(!mountQuote)}>cancel</button>
-                        <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>post</button>
+                        <button id='submit-text' onClick={handleSubmit}>post</button>
                     </div>
                 </div>
             </div>

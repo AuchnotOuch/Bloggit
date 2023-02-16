@@ -15,6 +15,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
     const [content, setContent] = useState(post.content)
     const [source, setSource] = useState(post.quote_source)
     const [errors, setErrors] = useState([])
+    const [submit, setSubmit] = useState(false)
 
     useEffect(() => {
         const errors = []
@@ -38,7 +39,8 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setSubmit(true)
+        if (!!errors.length) return
         const editedPost = {
             postId: post.id,
             title,
@@ -83,7 +85,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
                                     id="content-input"
                                 />
                                 <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    {submit && !!errors.length && errors.map(error => <li style={{ color: 'red' }} id="error" key={error}>{error}</li>)}
                                 </ul>
                             </form>
                         </div>
@@ -111,7 +113,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
                                     />
                                 </div>
                                 <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    {submit && !!errors.length && errors.map(error => <li style={{ color: 'red' }} id="error" key={error}>{error}</li>)}
                                 </ul>
                             </form>
                         </div>
@@ -127,14 +129,14 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
                                     id="content-input"
                                 />
                                 <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    {submit && !!errors.length && errors.map(error => <li style={{ color: 'red' }} id="error" key={error}>{error}</li>)}
                                 </ul>
                             </form>
                         </div>
                     }
                     <div className="cancel-submit-container">
                         <button id='cancel-text' onClick={() => { setBlur(!blur); setMountEdit(!mountEdit) }}>Cancel</button>
-                        <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>Save</button>
+                        <button id='submit-text' onClick={handleSubmit}>Save</button>
                     </div>
                 </div>
             </div>

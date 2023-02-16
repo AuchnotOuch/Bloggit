@@ -131,7 +131,7 @@ const MainProfile = () => {
                         {mountDelete && <DeletePost blur={blur} setBlur={setBlur} deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
                         {mountEdit && <EditPost blur={blur} setBlur={setBlur} editId={editId} mountEdit={mountEdit} setMountEdit={setMountEdit} />}
                         <div className="profile-header">
-                            <div className="profile-pic"><img src={user.profile_photo_url} /></div>
+                            <div className="profile-pic"><img src={user.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} /></div>
                             <h3 className="blog-name">{user.blog_title}</h3>
                             <div className="blog-description">{user.description}</div>
                             {parseInt(userId) !== currentUser.id &&

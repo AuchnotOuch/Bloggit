@@ -11,6 +11,7 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
     const dispatch = useDispatch()
     const [content, setContent] = useState('')
     const [errors, setErrors] = useState([])
+    const [submit, setSubmit] = useState(false)
 
     const [image, setImage] = useState(null)
     const [caption, setCaption] = useState('')
@@ -56,6 +57,8 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setSubmit(true)
+        if (!!errors.length) return
         const formData = new FormData();
         formData.append("image", image)
         formData.append("owner_id", user.id)
@@ -115,11 +118,11 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                                 id="content-input"
                             />
                             <div>
-                                {errors.map(error => <div id="error" key={error}>{error}</div>)}
+                                {submit && !!errors.length && errors.map(error => <div style={{ color: 'red' }} id="error" key={error}>{error}</div>)}
                             </div>
                             <div className="cancel-submit-container">
                                 <button id='cancel-text' onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
-                                <button id='submit-text' disabled={!!errors.length} type='submit'>post</button>
+                                <button id='submit-text' type='submit'>post</button>
                             </div>
                         </form>
                     </div>
