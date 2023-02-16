@@ -50,12 +50,12 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
             errors.push("Post content must be 10000 or less characters")
         }
         setErrors(errors)
+        console.log(errors)
     }, [caption, content])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('test')
         const formData = new FormData();
         formData.append("image", image)
         formData.append("owner_id", user.id)
@@ -73,7 +73,6 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
             dispatch(actionClearComments())
             dispatch(thunkGetAllPosts())
         }
-        return await response.json()
     }
 
     const updateImage = (e) => {
@@ -94,7 +93,7 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                         {/* <Link to={`/${user.username}`}>{user.username}</Link> */}
                     </div>
                     <div className="text-form-container">
-                        <form onSubmit={() => handleSubmit()} className="text-form">
+                        <form onSubmit={handleSubmit} className="text-form">
                             <input
                                 type='file'
                                 accept="image/*"
@@ -118,11 +117,11 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                             <div>
                                 {errors.map(error => <div id="error" key={error}>{error}</div>)}
                             </div>
+                            <div className="cancel-submit-container">
+                                <button id='cancel-text' onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
+                                <button id='submit-text' disabled={!!errors.length} type='submit'>post</button>
+                            </div>
                         </form>
-                    </div>
-                    <div className="cancel-submit-container">
-                        <button id='cancel-text' onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
-                        <button id='submit-text' disabled={!!errors.length} type='submit'>post</button>
                     </div>
                 </div>
             </div>
