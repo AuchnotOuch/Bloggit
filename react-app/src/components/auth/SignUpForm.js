@@ -10,8 +10,9 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [profilePhoto, setProfilePhoto] = useState('')
-  const [blogTitle, setBlogTitle] = useState('')
-  const [description, setDescription] = useState('')
+  // const [blogTitle, setBlogTitle] = useState('')
+  // const [description, setDescription] = useState('')
+  const [submit, setSubmit] = useState(false)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -51,6 +52,8 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    setSubmit(true)
+    if (!!errors.length) return
     if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password, profilePhoto));
       if (data) {
@@ -145,10 +148,10 @@ const SignUpForm = () => {
             id='email-input'
           ></input>
         </div>
-        <button disabled={!!errors.length} id='demo-button' type='submit'>Sign Up</button>
+        <button id='demo-button' type='submit'>Sign Up</button>
       </form>
-      {errors.map((error, ind) => (
-        <div key={ind}>{error}</div>
+      {submit && errors.length > 0 && errors.map((error, ind) => (
+        <div style={{ color: 'red' }} key={ind}>{errors.length ? error : ''}</div>
       ))}
     </div>
   );

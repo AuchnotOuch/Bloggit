@@ -84,7 +84,6 @@ def unfollow(id):
 
     follows = Follower.query.filter(Follower.user_id == id, Follower.follower_id == current_user.id)
     # follow = follows.filter(Follower.follower_id == current_user.id)
-    print(follows)
     for follow in follows:
         db.session.delete(follow)
         db.session.commit()

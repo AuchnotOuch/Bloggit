@@ -34,7 +34,7 @@ const FeaturedPost = () => {
             <div className='single-featured-blog'>
                 {featuredPost.type === 'photo' &&
                     <div>
-                        <img id='featured-photo' src={featuredPost.photos[0].url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
+                        <img alt='featured pic' id='featured-photo' src={featuredPost.photos[0].url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
                     </div>
                 }
                 <div id='featured-title'>
@@ -55,7 +55,7 @@ const FeaturedPost = () => {
             </div>
             <div className='featured-post-owner-container'>
                 <div>
-                    <img id='featured-post-owner' src={featuredPost.owner.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
+                    <img alt="featured post owner pic" id='featured-post-owner' src={featuredPost.owner.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
                 </div>
                 <div>
                     - {featuredPost.owner.username}

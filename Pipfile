@@ -24,6 +24,7 @@ python-dateutil = "*"
 python-editor = "*"
 mako = "*"
 email-validator = "*"
+boto3 = "*"
 
 [dev-packages]
 

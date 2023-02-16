@@ -52,7 +52,7 @@ const Dashboard = () => {
                         {mountDelete && <DeletePost blur={blur} setBlur={setBlur} deleteId={deleteId} mountDelete={mountDelete} setMountDelete={setMountDelete} />}
                         {mountEdit && <EditPost blur={blur} setBlur={setBlur} editId={editId} mountEdit={mountEdit} setMountEdit={setMountEdit} />}
                         {Object.values(posts).reverse().map(post => (
-                            <Post post={post} user={user} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
+                            <Post key={post.id} post={post} user={user} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
                         ))}
                     </div>
                     <div className='side-section'>

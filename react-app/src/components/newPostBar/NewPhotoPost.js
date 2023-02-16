@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { actionClearComments } from "../../store/comments";
-import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
+import { thunkGetAllPosts } from "../../store/posts";
 import "../landing/Landing.css"
 
 
@@ -11,36 +10,13 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
     const dispatch = useDispatch()
     const [content, setContent] = useState('')
     const [errors, setErrors] = useState([])
+    const [submit, setSubmit] = useState(false)
 
-    const [imageUrl, setImageUrl] = useState('')
+    const [image, setImage] = useState(null)
     const [caption, setCaption] = useState('')
 
     useEffect(() => {
         const errors = []
-        const picTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg']
-        const validUrl = (str) => {
-            try {
-                const url = new URL(str)
-                if (url.protocol === 'http:' || url.protocol === 'https:') {
-                    return true
-                }
-            }
-            catch (e) {
-                return false
-            }
-        }
-
-        if (!imageUrl) {
-            errors.push("You must provide an image url")
-        }
-
-        if (!picTypes.includes(imageUrl.split(".").pop())) {
-            errors.push("Please provide a jpg, jpeg, png, gif, or svg")
-        }
-
-        if (!validUrl(imageUrl)) {
-            errors.push('Please provide a valid image link')
-        }
 
         if (caption && caption.length > 1000) {
             errors.push("Caption must be 1000 or less characters")
@@ -50,44 +26,53 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
             errors.push("Post content must be 10000 or less characters")
         }
         setErrors(errors)
-    }, [imageUrl, caption, content])
+    }, [caption, content])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        setSubmit(true)
+        if (!!errors.length) return
+        const formData = new FormData();
+        formData.append("image", image)
+        formData.append("owner_id", user.id)
+        formData.append("type", "photo")
+        formData.append("image_caption", caption)
+        formData.append('content', content)
 
-        const newPhotoPost = {
-            owner_id: user.id,
-            type: "photo",
-            image_url: imageUrl,
-            image_caption: caption,
-            content
+        const response = await fetch(`api/posts/new`, {
+            method: "POST",
+            body: formData
+        })
+        if (response.ok) {
+            await response.json()
+            setMountPhoto(!mountPhoto)
+            dispatch(actionClearComments())
+            dispatch(thunkGetAllPosts())
         }
-
-        setMountPhoto(!mountPhoto)
-        dispatch(thunkCreatePost(newPhotoPost))
-        dispatch(actionClearComments())
-        dispatch(thunkGetAllPosts())
     }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0]
+        setImage(file)
+    }
+
     return (
         <div className="background-blur">
             <div className="new-post-modal">
                 <div className='feed-profile-photo' >
-                    <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                    <img alt='profile pic' src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                 </div>
                 <div className='new-post-header'>
                     <div className="new-header-section">
                         <div>{user.username}</div>
-
-                        {/* <Link to={`/${user.username}`}>{user.username}</Link> */}
                     </div>
                     <div className="text-form-container">
-                        <form className="text-form">
+                        <form onSubmit={handleSubmit} className="text-form">
                             <input
-                                type="text"
-                                value={imageUrl}
-                                onChange={e => setImageUrl(e.target.value)}
-                                placeholder="Image Url"
+                                type='file'
+                                accept="image/*"
+                                onChange={updateImage}
                                 required
                             />
                             <input
@@ -105,13 +90,13 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                                 id="content-input"
                             />
                             <div>
-                                {errors.map(error => <div id="error" key={error}>{error}</div>)}
+                                {submit && !!errors.length && errors.map(error => <div style={{ color: 'red' }} id="error" key={error}>{error}</div>)}
+                            </div>
+                            <div className="cancel-submit-container">
+                                <button id='cancel-text' onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
+                                <button id='submit-text' type='submit'>post</button>
                             </div>
                         </form>
-                    </div>
-                    <div className="cancel-submit-container">
-                        <button id='cancel-text' onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
-                        <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>post</button>
                     </div>
                 </div>
             </div>

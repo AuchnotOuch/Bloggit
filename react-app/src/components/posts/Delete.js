@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { thunkDeletePost, thunkGetAllPosts } from "../../store/posts";
+import { thunkDeletePost } from "../../store/posts";
 import "../landing/Landing.css"
 
 
@@ -8,7 +8,6 @@ const DeletePost = ({ blur, setBlur, deleteId, mountDelete, setMountDelete }) =>
     const dispatch = useDispatch()
 
     const handleDelete = () => {
-        console.log(deleteId)
         dispatch(thunkDeletePost(deleteId))
         setMountDelete(!mountDelete)
         setBlur(!blur)

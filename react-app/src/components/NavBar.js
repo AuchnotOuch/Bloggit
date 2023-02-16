@@ -11,9 +11,9 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user)
   const [mountMenu, setMountMenu] = useState(false)
 
-  const toggleMenu = () => setMountMenu(!mountMenu)
 
   useEffect(() => {
+    const toggleMenu = () => setMountMenu(!mountMenu)
     if (mountMenu) {
       window.addEventListener('click', toggleMenu)
       return () => window.removeEventListener('click', toggleMenu)
@@ -52,7 +52,7 @@ const NavBar = () => {
         <>
           <div className='user-menu-container'>
             <div>
-              <button onClick={toggleMenu} className='user-menu'><i className={mountMenu ? "fa-solid fa-user menu-active" : "fa-solid fa-user"}></i></button>
+              <button onClick={() => setMountMenu(!mountMenu)} className='user-menu'><i className={mountMenu ? "fa-solid fa-user menu-active" : "fa-solid fa-user"}></i></button>
             </div>
             {mountMenu &&
               <DropDown />
