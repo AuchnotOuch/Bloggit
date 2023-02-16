@@ -3,26 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { thunkGetAllPosts } from '../../store/posts';
 import FeaturedPost from '../FeaturedPost/FeaturedPost';
-import Post from "../posts/Post";
 
 import './Landing.css'
 import Welcome from './Welcome';
 
 const Landing = () => {
-    const posts = useSelector(state => state.posts)
+    const history = useHistory()
     const user = useSelector(state => state.session.user)
+    if (user) {
+        history.push('/dashboard')
+    }
+    const posts = useSelector(state => state.posts)
     const [mountWelcome, setMountWelcome] = useState(true)
 
-    const history = useHistory()
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(thunkGetAllPosts())
     }, [dispatch])
 
-    if (user) {
-        history.push('/dashboard')
-    }
     return (
         <>
             {mountWelcome &&
@@ -31,9 +30,9 @@ const Landing = () => {
             <div className='feed-container'>
                 <div className='feed'>
                     {Object.values(posts).reverse().map(post => (
-                        <div className='post-container'>
+                        <div key={post.id} className='post-container'>
                             <div className='feed-profile-photo' >
-                                <img src={`${post.owner.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                                <img alt='profile pic' src={`${post.owner.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                             </div>
                             <div className='post-header'>
                                 <div className="header-section">
@@ -58,9 +57,9 @@ const Landing = () => {
                                     {post.type === 'photo' &&
                                         <>
                                             {Object.values(post.photos).map(photo => (
-                                                <div className='image-post-container'>
+                                                <div key={photo.id} className='image-post-container'>
                                                     <div className='post-image'>
-                                                        <img src={photo.url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                                                        <img alt='post pic' src={photo.url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                                                     </div>
                                                     <div className='post-image-caption'>{photo.text}</div>
                                                 </div>

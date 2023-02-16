@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
 import { thunkCreateComment, thunkGetAllComments } from "../../store/comments";
 import "../landing/Landing.css"
 
@@ -41,7 +40,7 @@ const NewComment = ({ postId }) => {
 
             <div className="new-comment">
                 <div className="comment-pic-input">
-                    <img id='comment-user-image' src={user.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
+                    <img alt="commenter pic" id='comment-user-image' src={user.profile_photo_url} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"} />
                     <form onSubmit={handleSubmit}>
                         <div id="comment-input-submit">
                             <textarea

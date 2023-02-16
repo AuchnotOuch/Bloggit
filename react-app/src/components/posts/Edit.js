@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from "react-router-dom";
-import { thunkGetAllPosts, thunkUpdatePost } from "../../store/posts";
+import { thunkUpdatePost } from "../../store/posts";
 import "../landing/Landing.css"
 
 
 const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
     const post = useSelector(state => state.posts[editId])
-    console.log(post)
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
@@ -15,6 +13,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
     const [content, setContent] = useState(post.content)
     const [source, setSource] = useState(post.quote_source)
     const [errors, setErrors] = useState([])
+    const [submit, setSubmit] = useState(false)
 
     useEffect(() => {
         const errors = []
@@ -34,11 +33,12 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
             errors.push("Source must be 100 or less characters")
         }
         setErrors(errors)
-    }, [title, content, source])
+    }, [title, content, source, post.type])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setSubmit(true)
+        if (!!errors.length) return
         const editedPost = {
             postId: post.id,
             title,
@@ -57,7 +57,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
         <>
             <div className="new-post-modal">
                 <div className='feed-profile-photo' >
-                    <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                    <img alt='profile pic' src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                 </div>
                 <div className='new-post-header'>
                     <div className="new-header-section">
@@ -83,7 +83,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
                                     id="content-input"
                                 />
                                 <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    {submit && !!errors.length && errors.map(error => <li style={{ color: 'red' }} id="error" key={error}>{error}</li>)}
                                 </ul>
                             </form>
                         </div>
@@ -111,7 +111,7 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
                                     />
                                 </div>
                                 <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    {submit && !!errors.length && errors.map(error => <li style={{ color: 'red' }} id="error" key={error}>{error}</li>)}
                                 </ul>
                             </form>
                         </div>
@@ -127,14 +127,14 @@ const EditPost = ({ blur, setBlur, editId, mountEdit, setMountEdit }) => {
                                     id="content-input"
                                 />
                                 <ul>
-                                    {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                    {submit && !!errors.length && errors.map(error => <li style={{ color: 'red' }} id="error" key={error}>{error}</li>)}
                                 </ul>
                             </form>
                         </div>
                     }
                     <div className="cancel-submit-container">
                         <button id='cancel-text' onClick={() => { setBlur(!blur); setMountEdit(!mountEdit) }}>Cancel</button>
-                        <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>Save</button>
+                        <button id='submit-text' onClick={handleSubmit}>Save</button>
                     </div>
                 </div>
             </div>

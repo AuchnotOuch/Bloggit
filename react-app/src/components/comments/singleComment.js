@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkUpdateComment, thunkGetAllComments, thunkDeleteComment, actionClearComments } from "../../store/comments";
+import { thunkDeleteComment } from "../../store/comments";
 import EditComment from "./EditComment";
 import "../landing/Landing.css"
 
@@ -20,7 +20,7 @@ const SingleComment = ({ comment }) => {
 
                 : <div className="comment-section">
                     <div className="commentor-pic">
-                        <img src={`${comment.user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                        <img alt='profile pic' src={`${comment.user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                     </div>
                     <div className="comment-container">
                         <div>{`${comment.user.username}`}</div>

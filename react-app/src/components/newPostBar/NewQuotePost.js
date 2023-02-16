@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { actionClearComments } from "../../store/comments";
 import { thunkCreatePost, thunkGetAllPosts } from "../../store/posts";
 import "../landing/Landing.css"
@@ -12,6 +11,7 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
     const [source, setSource] = useState('')
     const [content, setContent] = useState('')
     const [errors, setErrors] = useState([])
+    const [submit, setSubmit] = useState(false)
 
     useEffect(() => {
         const errors = []
@@ -32,7 +32,8 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
+        setSubmit(true)
+        if (!!errors.length) return
         const newQuotePost = {
             owner_id: user.id,
             type: "quote",
@@ -48,7 +49,7 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
         <div className="background-blur">
             <div className="new-post-modal">
                 <div className='feed-profile-photo' >
-                    <img src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
+                    <img alt='profile pic' src={`${user.profile_photo_url}`} onError={e => e.currentTarget.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Font_B.svg/1874px-Font_B.svg.png"}></img>
                 </div>
                 <div className='new-post-header'>
                     <div className="new-header-section">
@@ -78,13 +79,13 @@ const NewQuotePost = ({ mountQuote, setMountQuote }) => {
                                 />
                             </div>
                             <ul>
-                                {errors.map(error => <li id="error" key={error}>{error}</li>)}
+                                {submit && !!errors.length && errors.map(error => <li style={{ color: 'red' }} id="error" key={error}>{error}</li>)}
                             </ul>
                         </form>
                     </div>
                     <div className="cancel-submit-container">
                         <button id='cancel-text' onClick={() => setMountQuote(!mountQuote)}>cancel</button>
-                        <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>post</button>
+                        <button id='submit-text' onClick={handleSubmit}>post</button>
                     </div>
                 </div>
             </div>
