@@ -142,7 +142,7 @@ const MainProfile = () => {
                         <div className="profile-posts">
                             <h2>Posts</h2>
                             <div className="posts-container">
-                                {userPosts.map(post => (
+                                {userPosts.reverse().map(post => (
                                     <ProfilePost key={post.id} post={post} user={currentUser} mountDeleteModal={mountDeleteModal} mountEditModal={mountEditModal} />
                                 ))}
                             </div>
