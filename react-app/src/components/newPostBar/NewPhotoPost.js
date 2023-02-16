@@ -12,35 +12,35 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
     const [content, setContent] = useState('')
     const [errors, setErrors] = useState([])
 
-    const [imageUrl, setImageUrl] = useState('')
+    const [image, setImage] = useState(null)
     const [caption, setCaption] = useState('')
 
     useEffect(() => {
         const errors = []
-        const picTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg']
-        const validUrl = (str) => {
-            try {
-                const url = new URL(str)
-                if (url.protocol === 'http:' || url.protocol === 'https:') {
-                    return true
-                }
-            }
-            catch (e) {
-                return false
-            }
-        }
+        // const picTypes = ['jpg', 'jpeg', 'png', 'gif', 'svg']
+        // const validUrl = (str) => {
+        //     try {
+        //         const url = new URL(str)
+        //         if (url.protocol === 'http:' || url.protocol === 'https:') {
+        //             return true
+        //         }
+        //     }
+        //     catch (e) {
+        //         return false
+        //     }
+        // }
 
-        if (!imageUrl) {
-            errors.push("You must provide an image url")
-        }
+        // if (!imageUrl) {
+        //     errors.push("You must provide an image url")
+        // }
 
-        if (!picTypes.includes(imageUrl.split(".").pop())) {
-            errors.push("Please provide a jpg, jpeg, png, gif, or svg")
-        }
+        // if (!picTypes.includes(imageUrl.split(".").pop())) {
+        //     errors.push("Please provide a jpg, jpeg, png, gif, or svg")
+        // }
 
-        if (!validUrl(imageUrl)) {
-            errors.push('Please provide a valid image link')
-        }
+        // if (!validUrl(imageUrl)) {
+        //     errors.push('Please provide a valid image link')
+        // }
 
         if (caption && caption.length > 1000) {
             errors.push("Caption must be 1000 or less characters")
@@ -50,25 +50,37 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
             errors.push("Post content must be 10000 or less characters")
         }
         setErrors(errors)
-    }, [imageUrl, caption, content])
+    }, [caption, content])
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        console.log('test')
+        const formData = new FormData();
+        formData.append("image", image)
+        formData.append("owner_id", user.id)
+        formData.append("type", "photo")
+        formData.append("image_caption", caption)
+        formData.append('content', content)
 
-        const newPhotoPost = {
-            owner_id: user.id,
-            type: "photo",
-            image_url: imageUrl,
-            image_caption: caption,
-            content
+        const response = await fetch(`api/posts/new`, {
+            method: "POST",
+            body: formData
+        })
+        if (response.ok) {
+            await response.json()
+            setMountPhoto(!mountPhoto)
+            dispatch(actionClearComments())
+            dispatch(thunkGetAllPosts())
         }
-
-        setMountPhoto(!mountPhoto)
-        dispatch(thunkCreatePost(newPhotoPost))
-        dispatch(actionClearComments())
-        dispatch(thunkGetAllPosts())
+        return await response.json()
     }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0]
+        setImage(file)
+    }
+
     return (
         <div className="background-blur">
             <div className="new-post-modal">
@@ -82,12 +94,11 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                         {/* <Link to={`/${user.username}`}>{user.username}</Link> */}
                     </div>
                     <div className="text-form-container">
-                        <form className="text-form">
+                        <form onSubmit={() => handleSubmit()} className="text-form">
                             <input
-                                type="text"
-                                value={imageUrl}
-                                onChange={e => setImageUrl(e.target.value)}
-                                placeholder="Image Url"
+                                type='file'
+                                accept="image/*"
+                                onChange={updateImage}
                                 required
                             />
                             <input
@@ -111,7 +122,7 @@ const NewPhotoPost = ({ mountPhoto, setMountPhoto }) => {
                     </div>
                     <div className="cancel-submit-container">
                         <button id='cancel-text' onClick={() => setMountPhoto(!mountPhoto)}>cancel</button>
-                        <button id='submit-text' disabled={!!errors.length} onClick={handleSubmit}>post</button>
+                        <button id='submit-text' disabled={!!errors.length} type='submit'>post</button>
                     </div>
                 </div>
             </div>

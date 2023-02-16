@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Post, User, PostImage
 from app.forms import NewPostForm, EditPostForm
+from app.aws import upload_file_to_s3, allowed_file, get_unique_filename
 
 posts_routes = Blueprint('posts', __name__)
 
@@ -28,9 +29,48 @@ def add_post():
     """
     Creates a new post based on submitted form data
     """
+    user = current_user
+    print('-------------->',request.form)
+
+    if request.form and request.form['type'] == 'photo':
+        if "image" not in request.files:
+            return {'error': "Must provide image"}, 400
+
+        image = request.files['image']
+
+        if not allowed_file(image.filename):
+            return {'error': 'filetype not permitted'}, 400
+
+        image.filename = get_unique_filename(image.filename)
+
+        upload = upload_file_to_s3(image)
+
+        if "url" not in upload:
+            return upload, 400
+
+        url = upload["url"]
+
+        photo_post = Post(
+            owner_id = user.id,
+            type = 'photo',
+            content = request.form['content']
+        )
+        db.session.add(photo_post)
+        db.session.commit()
+
+        post_photo = PostImage(
+            post_id = photo_post.id,
+            url = url,
+            text = request.form['image_caption']
+        )
+
+        db.session.add(post_photo)
+        db.session.commit()
+
+        return photo_post.to_dict()
+
     form = NewPostForm()
 
-    user = current_user
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
