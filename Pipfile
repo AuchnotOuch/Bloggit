@@ -25,6 +25,7 @@ python-editor = "*"
 mako = "*"
 email-validator = "*"
 boto3 = "*"
+flask-socketio = "*"
 
 [dev-packages]
 
