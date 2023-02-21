@@ -5,6 +5,7 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 from .models import db, User
+from .sockets import socketio
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.posts_routes import posts_routes
@@ -36,10 +37,12 @@ app.register_blueprint(comments_routes, url_prefix='/api/comments')
 app.register_blueprint(likes_routes, url_prefix='/api/likes')
 
 db.init_app(app)
+socketio.init_app(app)
 Migrate(app, db)
 
 # Application Security
 CORS(app)
+
 
 
 # Since we are deploying with Docker and Flask,
@@ -96,3 +99,6 @@ def react_root(path):
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+if __name__ == '__main__':
+    socketio.run(app)
