@@ -15,6 +15,7 @@ import '../src/components/landing/Landing.css'
 import Followers from './components/Follows/Followers';
 import Followings from './components/Follows/Followings';
 import MainProfile from './components/Profile/MainProfile';
+import Messaging from './components/Messages';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -52,6 +53,9 @@ function App() {
         </Route>
         <Route path='/users/:userId/following' exact={true}>
           <Followings />
+        </Route>
+        <Route path='/chat' exact={true}>
+          <Messaging />
         </Route>
         <ProtectedRoute path='/dashboard' exact={true}>
           <Dashboard />

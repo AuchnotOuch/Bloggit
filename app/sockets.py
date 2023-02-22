@@ -1,7 +1,7 @@
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 
 socketio = SocketIO(cors_allowed_origins="*")
 
 @socketio.on("message")
-def message(data):
-    emit("message", data, broadcast=True)
+def handleMessage(msg):
+    emit("message", msg, broadcast=True)
