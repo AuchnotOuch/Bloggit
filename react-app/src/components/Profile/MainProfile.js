@@ -131,12 +131,15 @@ const MainProfile = () => {
                             <h3 className="blog-name">{user.blog_title}</h3>
                             <div className="blog-description">{user.description}</div>
                             {parseInt(userId) !== currentUser.id &&
-                                <div className="follow-unfollow">
-                                    {following
-                                        ? <button id="profile-unfollow" onClick={unfollow}>Unfollow</button>
-                                        : <button id="profile-follow" onClick={follow}>Follow</button>
-                                    }
-                                </div>
+                                <>
+                                    <div className="follow-unfollow">
+                                        {following
+                                            ? <button id="profile-unfollow" onClick={unfollow}>Unfollow</button>
+                                            : <button id="profile-follow" onClick={follow}>Follow</button>
+                                        }
+                                    </div>
+                                    <div><button><i className="fa-regular fa-message"></i></button></div>
+                                </>
                             }
                         </div>
                         <div className="profile-posts">
