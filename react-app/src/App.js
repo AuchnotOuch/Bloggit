@@ -30,16 +30,15 @@ function App() {
     (async () => {
       await dispatch(authenticate());
       setLoaded(true);
+      socket.on('message', 'test')
     })();
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(user)
-    if (user) {
-      socket.on('connect', user.id)
-    }
-    return null
-  }, [user])
+
+  // if (user) {
+  //   socket.on('message', 'test')
+  // }
+
 
   if (!loaded) {
     return null;

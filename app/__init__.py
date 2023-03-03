@@ -37,8 +37,8 @@ app.register_blueprint(comments_routes, url_prefix='/api/comments')
 app.register_blueprint(likes_routes, url_prefix='/api/likes')
 
 db.init_app(app)
-socketio.init_app(app)
 Migrate(app, db)
+socketio.init_app(app)
 
 # Application Security
 CORS(app)
